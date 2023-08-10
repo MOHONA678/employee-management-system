@@ -9,8 +9,6 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            {{-- <h1 class="h3 mb-3">Dashboard</h1> --}}
-
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-3">Attendance</h1>
                 <a href="{{ route('attendance.create') }}" class="btn btn-primary">

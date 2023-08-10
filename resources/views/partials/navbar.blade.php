@@ -1,9 +1,47 @@
 <nav class="navbar navbar-expand navbar-light navbar-bg">
-    <a class="sidebar-toggle js-sidebar-toggle">
-<i class="hamburger align-self-center"></i>
-</a>
+  <a class="sidebar-toggle js-sidebar-toggle">
+        <i class="hamburger align-self-center"></i>
+  </a>
 
-    <div class="navbar-collapse collapse">
+  <ul class="navbar-nav navbar-align">
+    <li class="nav-item dropdown">
+      <a class="nav-icon nav-link dropdown-toggle" href="javascript:void(0)" id="itemsDropdown" data-bs-toggle="dropdown">
+          <i class="align-middle" data-feather="plus"></i>
+          <span class="align-middle" style="font-size: 0.85rem;">New Items</span>
+      </a>
+      <div class="dropdown-menu py-0" aria-labelledby="itemsDropdown">
+          <div class="dropdown-menu-header">{{ __('Add New Opion') }}</div>
+          <div class="list-group">
+            <a href="{{ route('department.create') }}" class="list-group-item">
+              <i class="fas fa-plus align-middle"></i>
+              <span class="text-dark ps-2">{{ __('Department') }}</span>
+            </a>
+            <a href="{{ route('employee.create') }}" class="list-group-item">
+              <i class="fas fa-plus align-middle"></i>
+              <span class="text-dark ps-2">{{ __('Employee') }}</span>
+            </a>
+            <a href="{{ route('attendance.create') }}" class="list-group-item">
+              <i class="fas fa-plus align-middle"></i>
+              <span class="text-dark ps-2">{{ __('Attendance') }}</span>
+            </a>
+            <a href="{{ route('leave.create') }}" class="list-group-item">
+                <i class="fas fa-plus align-middle"></i>
+                <span class="text-dark ps-2">{{ __('Leave') }}</span>
+            </a>
+            <a href="{{ route('payroll.create') }}" class="list-group-item">
+                <i class="fas fa-plus align-middle"></i>
+                <span class="text-dark ps-2">{{ __('Payroll') }}</span>
+            </a>
+            <a href="{{ route('salary.create') }}" class="list-group-item">
+                <i class="fas fa-plus align-middle"></i>
+                <span class="text-dark ps-2">{{ __('Salary') }}</span>
+            </a>
+          </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
@@ -156,5 +194,5 @@
                 </div>
             </li>
         </ul>
-    </div>
+  </div>
 </nav>

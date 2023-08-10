@@ -22,6 +22,7 @@ class PayrollController extends Controller
     public function create()
     {
         //
+        return view('admin.payroll.create');
     }
 
     /**
