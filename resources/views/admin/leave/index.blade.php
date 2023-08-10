@@ -9,7 +9,13 @@
     <main class="content">
         <div class="container-fluid p-0">
 
-            <h1 class="h3 mb-3">Dashboard</h1>
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-3">Leave</h1>
+                <a href="{{ route('leave.create') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    <span class="ps-1">{{ __('Add New') }}</span>
+                </a>
+            </div>
 
             <div class="row">
                 <div class="col-12">
