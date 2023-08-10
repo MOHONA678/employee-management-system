@@ -68,6 +68,12 @@ class DepartmentController extends Controller
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
         //
+        
+        $department->title = $request->title;
+        $department->description = $request->description;
+        $department->status = $request->status;
+        $department->save();
+        return back()->with('success','Department updated successfully');
     }
 
     /**
@@ -76,5 +82,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         //
+        $department -> delete();
+        return back()->with('success','Department deleted successfully');
     }
 }

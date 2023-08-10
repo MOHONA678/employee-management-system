@@ -39,13 +39,15 @@
                 {{ $department->created_at->diffforhumans() }}
                 {{-- {{ $department->created_at }} --}}
               </td>
-              <td>
-                <a href="{{ route('department.edit', $department->id) }}" class="btn btn-outline-success btn-sm">
+              <td class="d-flex justify-content-center ">
+                <a href="{{ route('department.edit', $department->id) }}" class="btn btn-outline-success btn-sm mx-2">
                   <i class="fas fa-edit"></i>
                 </a>
-                <button type="button" class="btn btn-outline-danger btn-sm">
+            <form action="{{ route('department.destroy', $department->id) }}" method="post">  @csrf @method('delete')
+                <button type="submit" class="btn btn-outline-danger btn-sm">
                   <i class="fas fa-trash-alt"></i>
                 </button>
+                </form>
               </td>
             </tr>
           @empty
