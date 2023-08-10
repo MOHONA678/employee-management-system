@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title')
-    {{ __('Manage Roles') }}
+    {{ __('Manage user') }}
 @endsection
 
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3">{{ __('Manage Roles') }}</h1>
-    <a href="{{route('roles.create')}}" class="btn btn-primary">
+    <h1 class="h3">{{ __('Manage user') }}</h1>
+    <a href="{{route('user.create')}}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add new') }}</span>
     </a>
@@ -24,40 +24,43 @@
       <table class="table table-hover my-0">
         <thead>
           <tr>
-            <th class="d-none d-xl-table-cell">{{ __('SL') }}</th>
-            <th>{{ __('Role Title') }}</th>
-            <th class="d-none d-xl-table-cell">{{ __('Role Slug') }}</th>
-            <th>{{ __('Status') }}</th>
-            <th class="d-none d-md-table-cell">{{ __('Date Created') }}</th>
+            <th class="d-none d-xl-table-cell">{{ __('role_id') }}</th>
+            <th>{{ __('Name') }}</th>
+            <th >{{ __('Email') }}</th>
+            <th class="d-none d-xl-table-cell">{{ __('email_verified_at') }}</th>
+            <th class="d-none d-md-table-cell">{{ __('password') }}</th>
             <th>{{ __('Action') }}</th>
           </tr>
         </thead>
         <tbody>
-          @forelse ($roles as $k => $role)
+          @forelse ($user as $k => $user)
             <tr>
               <td class="d-none d-xl-table-cell">{{ $k + 1 }}</td>
               <td>
-                <strong>{{ $role->title }}</strong>
+                <strong>{{ $user->name }}</strong>
               </td>
-              <td class="d-none d-xl-table-cell">{{ $role->slug }}</td>
               <td>
-                @if ($role->status === 1)
+                <strong>{{ $user->email }}</strong>
+              </td>
+              <td class="d-none d-xl-table-cell">{{ $user->email_verified_at }}</td>
+              {{-- <td>
+                @if ($user->status === 1)
                   <span class="badge bg-success">Enable</span>
-                @elseif ($role->status === 0)
+                @elseif ($user->status === 0)
                   <span class="badge bg-danger">Disable</span>
                 @else
                   <span class="badge bg-secondary">Pending</span>
                 @endif
-              </td>
-              <td class="d-none d-md-table-cell">{{ $role->created_at->diffforhumans() }}</td>
+              </td> --}}
+              <td class="d-none d-md-table-cell">{{ $user->password }}</td>
               <td width="90px">
-                <form action="{{ route("roles.destroy", $role->id) }}" method="post">
+                <form action="{{ route("user.destroy", $user->id) }}" method="post">
                   @csrf
                   @method("delete")
-                  <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-outline-primary btn-sm">
+                  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-primary btn-sm">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteRole({{ $role->id }})">
+                  <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteRole({{ $user->id }})">
                     <i class="fas fa-trash-alt"></i>
                 </button>
                 </form>

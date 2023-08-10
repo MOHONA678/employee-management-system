@@ -13,6 +13,8 @@ class UserController extends Controller
     public function index()
     {
         //
+        $user = User::all();
+        return view('admin.user.index', compact('user'));
     }
 
     /**
@@ -21,6 +23,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('admin.user.create');
     }
 
     /**
@@ -29,6 +32,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        User::create($request->all());
+        return back()->with('success', 'Role crated successfully');
     }
 
     /**
@@ -45,6 +50,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
