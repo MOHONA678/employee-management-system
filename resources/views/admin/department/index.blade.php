@@ -4,31 +4,60 @@
 @section('title')
     {{ __('Manage Departments') }}
 @endsection
+@section('header')
+  <h1 class="h3 mb-3">Dashboard</h1>
+@endsection
 
 @section('content')
-    <main class="content">
-        <div class="container-fluid p-0">
-
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-3">Department</h1>
-                <a href="{{ route('department.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus"></i>
-                    <span class="ps-1">{{ __('Add New') }}</span>
+<section class="container-fluid">
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SL</th>
+            <th scope="col">Department Title</th>
+            <th scope="col">Department Status</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse ($departments as $department)
+            <tr>
+              <th scope="row">{{ $loop->iteration }}</th>
+              <td>{{ $department->title }}</td>
+              <td>
+                @if ($department->status === 1)
+                  <span class="badge bg-success">Enable</span>
+                @elseif ($department->status === 0)
+                  <span class="badge bg-danger">Disable</span>
+                @else
+                  <span class="badge bg-secondary">Pending</span>
+                @endif
+              </td>
+              <td>
+                {{ $department->created_at->diffforhumans() }}
+                {{-- {{ $department->created_at }} --}}
+              </td>
+              <td>
+                <a href="{{ route('department.edit', $department->id) }}" class="btn btn-outline-success btn-sm">
+                  <i class="fas fa-edit"></i>
                 </a>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Empty card</h5>
-                        </div>
-                        <div class="card-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
+                <button type="button" class="btn btn-outline-danger btn-sm">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          @empty
+            <tr>
+              <td colspan="6" class="text-center">{{ __('No Data Found') }}</td>
+            </tr>
+          @endforelse
+        </tbody>
+      </table>
+    </div>
+  </section>
+@endsection
+@section('script')
+    
 @endsection
