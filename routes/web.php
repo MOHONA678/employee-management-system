@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SalaryController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware('guest')->prefix('admin')->group( function () {
     Route::resource('leave', LeaveController::class);
     Route::resource('salary', SalaryController::class);
     Route::resource('payroll',PayrollController::class);
+    Route::resource('roles',RoleController::class );
 });
 
 Route::get('/dashboard', function () {

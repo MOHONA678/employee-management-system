@@ -4,6 +4,10 @@
     {{ __('Add New Role') }}
 @endsection
 
+@section('header')
+  <h1 class="h3 mb-3">Dashboard</h1>
+@endsection
+
 @section('content')
   <section class="container-fluid">
     <div class="container">
@@ -12,30 +16,23 @@
           <form action="{{ route('roles.store') }}" method="post">
             @csrf
             <div class="card">
-              <div class="card-body">
-                <div class="form-group my-2">
-                  <label for="title">Role Title</label>
-                  <div class="input-group">
-                    <input type="text" name="title" class="form-control" id="title" required />
+              <div class="card-header">
+                <h5 class="card-title mb-0">{{ __('Create New Role') }}</h5>
+              </div>
+              <div class="card-body py-0">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="{{ __('Role Title') }}" value="{{ old('title') }}" required />
                   </div>
-                </div>
-                <div class="form-group my-2">
-                  <label for="description">Role Description</label>
-                  <div class="input-group">
-                    <textarea name="description" class="form-control" id="description" cols="30" rows="6"></textarea>
+                  <div class="col-12">
+                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="{{ __('Type details here ...') }}">{{ old('description') }}</textarea>
                   </div>
-                </div>
-                <div class="form-group my-2">
-                  <label for="slug">Role Slug</label>
-                  <div class="input-group">
-                    <input type="text" name="slug" class="form-control" id="slug" />
+                  <div class="col-12">
+                    <input type="text" name="slug" class="form-control" id="slug" placeholder="{{ __('Role Slug') }}" value="{{ old('slug') }}" />
                   </div>
-                </div>
-                <div class="form-group my-2">
-                  <label for="status">Role Status</label>
-                  <div class="input-group">
+                  <div class="col-12">
                     <select name="status" class="form-control" id="status">
-                      <option value="">{{ __('-- Choose One --') }}</option>
+                      <option value="">{{ __('-- Choose Status --') }}</option>
                       <option value="1">{{ __('Enable') }}</option>
                       <option value="0">{{ __('Disable') }}</option>
                     </select>
@@ -43,16 +40,16 @@
                 </div>
               </div>
               <div class="card-footer">
-                <div class="row g-3">
+                <div class="row">
                   <div class="col-6 d-grid">
-                    <a href="{{ route('roles.index') }}" class="btn btn-secondary">
-                      <i class="fas fa-arrow-left"></i>
+                    <a href="{{ route('roles.index') }}" class="btn btn-outline-secondary" >
+                      <i class="align-middle me-1" data-feather="arrow-left"></i>
                       <span class="ps-1">{{ __('Discard') }}</span>
                     </a>
                   </div>
                   <div class="col-6 d-grid">
-                    <button type="submit" class="btn btn-primary">
-                      <i class="fas fa-plus"></i>
+                    <button type="submit" class="btn btn-outline-primary" >
+                      <i class="align-middle me-1" data-feather="plus"></i>
                       <span class="ps-1">{{ __('Create New') }}</span>
                     </button>
                   </div>
