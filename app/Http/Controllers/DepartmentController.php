@@ -82,7 +82,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         //
-        $department -> delete();
+        $department-> delete();
         return back()->with('success','Department deleted successfully');
     }
 }
