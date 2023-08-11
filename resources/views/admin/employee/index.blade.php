@@ -16,19 +16,38 @@
                     <span class="ps-1">{{ __('Add New') }}</span>
                 </a>
             </div>
+         </div>
+            <h1>Employee List</h1>
+    <a href="{{ route('employee.create') }}" class="btn btn-primary">Create Employee</a>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Empty card</h5>
-                        </div>
-                        <div class="card-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($employees as $employee)
+                <tr>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->firstname }}</td>
+                    <td>{{ $employee->lastname }}</td>
+                    <td>{{ $employee->email }}</td>
+                    <td>{{ $employee->phone }}</td>
+                    <td>
+                        <a href="{{ route('employee.show', ['id' => $employee->id]) }}" class="btn btn-info">View</a>
+                        <!-- Add more actions like Edit and Delete if needed -->
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-        </div>
+       
     </main>
 @endsection

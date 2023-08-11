@@ -44,7 +44,7 @@
                   <i class="fas fa-edit"></i>
                 </a>
             <form action="{{ route('department.destroy', $department->id) }}" method="post">  @csrf @method('delete')
-                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="deleteRole(e,t)">
+                <button type="submit" class="btn btn-outline-danger btn-sm" name="form" onclick="deletedepartment(e, t)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
                 </form>
@@ -61,12 +61,12 @@
   </section>
 @endsection
 @section('script')
-    <script>
-      function deleteRole(e, t){
-        e.preventDefault();
-        let c= confirm("Are you sure?");
-        if(!c) return;
-        t.closet('form').submit();
-      }
-    </script>
+<script>
+    function deleteDepartment(e, t) {
+      e.preventDefault();
+      let c = confirm("Are you sure?");
+      if (!c) return;
+      t.closet('form').submit();
+    }
+  </script>
 @endsection

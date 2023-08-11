@@ -32,6 +32,20 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         //
+        $validatedData = $request->validate([
+            'firstname' => 'required|max:50',
+            'lastname' => 'required|max:50',
+            'email' => 'required|email|unique:employees',
+            'phone' => 'required|max:19',
+            // Add validation rules for other fields
+        ]);
+    
+        // Save the employee record
+        $employee = new Employee();
+        $employee->fill($validatedData);
+        $employee->save();
+    
+        return redirect('/employee/'.$employee->id)->with('success', 'Employee created successfully.');
     }
 
     /**
@@ -40,6 +54,8 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         //
+        $employee = Employee::findOrFail($id);
+    return view('employee.show', ['employee' => $employee]);
     }
 
     /**
