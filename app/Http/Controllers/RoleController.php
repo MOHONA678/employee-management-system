@@ -60,6 +60,8 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request, Role $role)
     {
         //
+        $role->update($request->all());
+        return back()->with('success', 'Role updated successfully');
     }
 
     /**
@@ -68,5 +70,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //
+        $role->delete();
+        return back()->with('success', 'Role deleted successfully');
     }
 }

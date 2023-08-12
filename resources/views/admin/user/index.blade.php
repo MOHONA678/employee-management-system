@@ -19,16 +19,17 @@
   <div class="col-12">
     <div class="card flex-fill">
       <div class="card-header">              
-        <h5 class="card-title mb-0">{{ __('Category DataTable') }}</h5>
+        <h5 class="card-title mb-0">{{ __('User DataTable') }}</h5>
       </div>
       <table class="table table-hover my-0">
         <thead>
           <tr>
-            <th class="d-none d-xl-table-cell">{{ __('role_id') }}</th>
+            <th class="d-none d-xl-table-cell">{{ __('SL') }}</th>
             <th>{{ __('Name') }}</th>
-            <th >{{ __('Email') }}</th>
-            <th class="d-none d-xl-table-cell">{{ __('email_verified_at') }}</th>
-            <th class="d-none d-md-table-cell">{{ __('password') }}</th>
+            <th class="d-none d-xl-table-cell" >{{ __('Email') }}</th>
+            <th class="d-none d-xl-table-cell">{{ __('Phone') }}</th>
+            <th>{{ __('User Role') }}</th>
+            <th>{{ __('Status') }}</th>
             <th>{{ __('Action') }}</th>
           </tr>
         </thead>
@@ -39,11 +40,14 @@
               <td>
                 <strong>{{ $user->name }}</strong>
               </td>
-              <td>
+              <td class="d-none d-xl-table-cell">
                 <strong>{{ $user->email }}</strong>
               </td>
-              <td class="d-none d-xl-table-cell">{{ $user->email_verified_at }}</td>
-              {{-- <td>
+              <td class="d-none d-xl-table-cell">{{ $user->phone }}</td>
+              <td>
+                <span class="badge bg-info">{{ $user->role->title }}</span>
+              </td>
+              <td>
                 @if ($user->status === 1)
                   <span class="badge bg-success">Enable</span>
                 @elseif ($user->status === 0)
@@ -51,8 +55,8 @@
                 @else
                   <span class="badge bg-secondary">Pending</span>
                 @endif
-              </td> --}}
-              <td class="d-none d-md-table-cell">{{ $user->password }}</td>
+              </td>
+              {{-- <td class="d-none d-md-table-cell">{{ $user->action }}</td> --}}
               <td width="90px">
                 <form action="{{ route("user.destroy", $user->id) }}" method="post">
                   @csrf
@@ -60,9 +64,9 @@
                   <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-primary btn-sm">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteRole({{ $user->id }})">
+                  <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteUser(event, this)">
                     <i class="fas fa-trash-alt"></i>
-                </button>
+                  </button>
                 </form>
               </td>
             </tr>
@@ -81,5 +85,12 @@
 @endsection
 
 @section('script')
-    
+<script>
+  function deleteUser(e, t) {
+    e.preventDefault();
+    let c = confirm("Are you sure?");
+    if (!c) return;
+    t.closest('form').submit();
+  }
+</script>  
 @endsection

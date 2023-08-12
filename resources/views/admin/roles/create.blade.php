@@ -12,7 +12,7 @@
   <section class="container-fluid">
     <div class="container">
       <div class="row">
-        <div class="col-7">
+        <div class="col-12">
           <form action="{{ route('roles.store') }}" method="post">
             @csrf
             <div class="card">
