@@ -1,22 +1,29 @@
 @extends('layouts.admin')
-{{-- @extends('admin') --}}
 
 @section('title')
-    {{ __('Manage Departments') }}
+  {{ __('Manage Departments') }}
 @endsection
+
 @section('header')
-  <h1 class="h3 mb-3">Dashboard</h1>
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-3">Manage Departments</h1>
+    <a href="{{ route('department.create') }}" class="btn btn-primary">
+      <i class="fas fa-plus"></i>
+      <span class="ps-1">{{ __('Add New') }}</span>
+    </a>
+  </div>
 @endsection
 
 @section('content')
-<section class="container-fluid">
-    <div class="container">
+<section class="row">
+  <div class="col-12">
+    <div class="card flex-fill">
       <table class="table">
         <thead>
           <tr>
             <th scope="col">SL</th>
             <th scope="col">Department Title</th>
-            <th scope="col">Department Status</th>
+            <th scope="col">Status</th>
             <th scope="col">Date Created</th>
             <th scope="col">Action</th>
           </tr>
@@ -37,16 +44,17 @@
               </td>
               <td>
                 {{ $department->created_at->diffforhumans() }}
-                {{-- {{ $department->created_at }} --}}
               </td>
               <td class="d-flex justify-content-center ">
                 <a href="{{ route('department.edit', $department->id) }}" class="btn btn-outline-success btn-sm mx-2">
                   <i class="fas fa-edit"></i>
                 </a>
-            <form action="{{ route('department.destroy', $department->id) }}" method="post">  @csrf @method('delete')
-                <button type="submit" class="btn btn-outline-danger btn-sm" name="form" onclick="deletedepartment(e, t)">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
+                <form action="{{ route('department.destroy', $department->id) }}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn btn-outline-danger btn-sm" onclick="del(event, this)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
                 </form>
               </td>
             </tr>
@@ -58,15 +66,9 @@
         </tbody>
       </table>
     </div>
-  </section>
+  </div>
+</section>
 @endsection
+
 @section('script')
-<script>
-    function deleteDepartment(e, t) {
-      e.preventDefault();
-      let c = confirm("Are you sure?");
-      if (!c) return;
-      t.closet('form').submit();
-    }
-  </script>
 @endsection

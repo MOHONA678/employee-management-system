@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
@@ -15,7 +16,7 @@ class EmployeeController extends Controller
     {
         //
         $employees = Employee::all();
-        return view('admin.employee.index', compact('employees'));
+        return view('admin.employee.index',compact('employees'));
     }
 
     /**
@@ -24,7 +25,8 @@ class EmployeeController extends Controller
     public function create()
     {
         //
-        return view('admin.employee.create');
+        $departments = Department::all();
+        return view('admin.employee.create', compact('departments'));
     }
 
     /**
@@ -33,20 +35,8 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         //
-        $validatedData = $request->validate([
-            'firstname' => 'required|max:50',
-            'lastname' => 'required|max:50',
-            'email' => 'required|email|unique:employees',
-            'phone' => 'required|max:19',
-            // Add validation rules for other fields
-        ]);
-    
-        // Save the employee record
-        $employee = new Employee();
-        $employee->fill($validatedData);
-        $employee->save();
-    
-        return redirect('/employee/'.$employee->id)->with('success', 'Employee created successfully.');
+        Employee::create($request->all());
+        return back()->with('success', 'Employee created successfully.');
     }
 
     /**
@@ -55,8 +45,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         //
-        $employee = Employee::findOrFail($id);
-    return view('employee.show', ['employee' => $employee]);
+        return view('admin.employee.show',compact('employee'));
     }
 
     /**
@@ -65,6 +54,8 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         //
+        $departments = Department::all();
+        return view('admin.employee.edit',compact(['employee', 'departments']));
     }
 
     /**
@@ -73,6 +64,8 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         //
+        $employee->update($request->all());
+        return back()->with('success', 'Employee updated successfully');
     }
 
     /**
@@ -81,5 +74,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+        $employee->delete();
+        return back()->with('success','Employee deleted successfully');
     }
 }

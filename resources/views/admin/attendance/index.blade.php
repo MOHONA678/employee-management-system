@@ -43,12 +43,12 @@
                 <strong>{{ $attendance->employee->firstname }} {{ $attendance->employee->lastname }}</strong>
               </td>
               <td class="d-none d-xl-table-cell">{{ $attendance->checkin_time }}</td>
-              <td>
-                <span class="badge bg-info">{{ $attendance->checkout_time }}</span>
-              </td>
-              
+              <td>{{ $attendance->checkout_time }}</td>
               <td width="90px">
-                <form action="{{ route("attendance.destroy", $attendance->id) }}" method="post">
+                <a href="{{ route('attendance.edit', $attendance->id) }}" class="btn btn-outline-primary btn-sm">
+                  <i class="fas fa-edit"></i>
+                </a>
+                {{-- <form action="{{ route("attendance.destroy", $attendance->id) }}" method="post">
                   @csrf
                   @method("delete")
                   <a href="{{ route('attendance.edit', $attendance->id) }}" class="btn btn-outline-primary btn-sm">
@@ -57,7 +57,7 @@
                   <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteUser(event, this)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
-                </form>
+                </form> --}}
               </td>
             </tr>
           @empty

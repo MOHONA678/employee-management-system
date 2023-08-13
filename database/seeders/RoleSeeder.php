@@ -10,8 +10,8 @@ class RoleSeeder extends Seeder {
     /**
      * Run the database seeds.
      */
-    public function run(): void {
-        //
+    public function run(): void
+    {
         $roles = [
             [ 'title' => 'Super Admin', 'slug' => 'super-admin', 'status' => 1 ],
             [ 'title' => 'Administrator', 'slug' => 'administrator', 'status' => 1 ],
@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder {
             [ 'title' => 'Payroll Manager', 'slug' => 'payroll-manager', 'status' => 1 ],
             [ 'title' => 'Data Analyst', 'slug' => 'data-analyst', 'status' => 1 ],
             [ 'title' => 'Department Head', 'slug' => 'department-head', 'status' => 1 ],
-            [ 'title' => 'Employee', 'slug' => 'employee', 'status' => 1 ],
+            [ 'title' => 'Employee', 'slug' => 'employee', 'status' => 1 ]
         ];
 
         foreach ($roles as $role) {

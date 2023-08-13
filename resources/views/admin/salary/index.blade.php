@@ -5,6 +5,10 @@
     {{ __('Manage salary') }}
 @endsection
 
+@section('header')
+    {{ __('Manage salary') }}
+@endsection
+
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">

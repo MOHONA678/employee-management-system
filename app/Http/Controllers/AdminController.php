@@ -13,14 +13,6 @@ class AdminController extends Controller
     {
         //
         return view('admin.dashboard');
-        // return view('layouts.admin');
-    }
-
-    public function sample()
-    {
-        //
-        return view('admin.sample');
-        // return view('layouts.admin');
     }
 
     /**

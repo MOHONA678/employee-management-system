@@ -22,8 +22,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.department.create');
+        $departments = Department::all();
+        return view('admin.department.create',compact('departments'));
     }
 
     /**
@@ -32,17 +32,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         //
-         //
-        // dd($request);
         Department::create($request->all());
-
-        // $department = new Department();
-        // $department->title = $request->title;
-        // $department->description = $request->description;
-        // $department->status = $request->status;
-        // $department->save();
-
-        // return redirect()->route('department.create')->with('success', 'Department crated successfully');
         return back()->with('success', 'Department created successfully');
     }
 
@@ -68,11 +58,7 @@ class DepartmentController extends Controller
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
         //
-        
-        $department->title = $request->title;
-        $department->description = $request->description;
-        $department->status = $request->status;
-        $department->save();
+        $department->update($request->all());
         return back()->with('success','Department updated successfully');
     }
 
@@ -82,7 +68,7 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         //
-        $department-> delete();
+        $department->delete();
         return back()->with('success','Department deleted successfully');
     }
 }

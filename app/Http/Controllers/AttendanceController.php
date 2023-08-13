@@ -52,8 +52,7 @@ class AttendanceController extends Controller {
     {
         //
         $employees = Employee::all();
-        return view('admin.attendance.edit', compact(['employees ', 'attendance']));
-        
+        return view('admin.attendance.edit', compact(['employees', 'attendance']));
     }
 
     /**

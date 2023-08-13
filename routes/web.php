@@ -30,14 +30,14 @@ Route::get('/', function () {
 // Route::get('/admin', function () {
 //     return view('layouts.admin');
 // });
-Route::middleware('guest')->prefix('admin')->group( function () {
+Route::middleware('auth')->prefix('admin')->group( function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/sample', [AdminController::class, 'sample'])->name('view.sample');
     Route::resource('employee', EmployeeController::class);
     Route::resource('department', DepartmentController::class);
     Route::resource('attendance', AttendanceController::class);
     Route::resource('leave', LeaveController::class);
-    Route::resource('salary', SalaryController::class);
+    // Route::resource('salary', SalaryController::class);
     Route::resource('payroll',PayrollController::class);
     Route::resource('roles',RoleController::class );
     Route::resource('user',UserController::class );
