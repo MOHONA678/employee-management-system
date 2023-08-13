@@ -57,7 +57,7 @@
   </a>
           </li>
             
-            <li class="sidebar-header">{{ __('Payroll') }}</li>
+            <li class="sidebar-header">{{ __('Payroll System') }}</li>
 
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('payroll.index') }}">
@@ -69,6 +69,19 @@
     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">{{ __('Generate Payroll') }}</span>
   </a>
           </li>
+
+          <li class="sidebar-header">{{ __('User Management') }}</li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('user.index') }}">
+  <i class="fas fa-user align-middle"></i> <span class="align-middle">{{ __('Manage Users') }}</span>
+</a>
+        </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('roles.index') }}">
+  <i class="fas fa-user-shield align-middle"></i> <span class="align-middle">{{ __('User Settings') }}</span>
+</a>
+        </li>
         </ul>
     </div>
 </aside>

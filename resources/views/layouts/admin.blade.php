@@ -37,6 +37,8 @@
         
                     {{-- <h1 class="h3 mb-3">Dashboard</h1> --}}
 
+					@include('partials.flash')
+
 					@yield('content')
         
                     {{-- <div class="row">
@@ -105,7 +107,12 @@
 		</div>
 	</div>
 
+	<script src="{{asset('libs/jquery/scripts.js')}}"></script>
+
 	<script src="{{asset('js/app.js')}}"></script>
+	<script src="{{asset('js/jquery-3.7.0.min.js')}}"></script>
+
+	@yield('script')
 
 </body>
 

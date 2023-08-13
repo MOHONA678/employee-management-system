@@ -9,15 +9,15 @@
 @endsection
 
 @section('content')
-  <section class="container-fluid">
-    <div class="container">
-      <div class="row">
+  
+  <section class="row">
         <div class="col-7">
           <form action="{{ route('roles.update', $role->id) }}" method="post">
             @csrf
+            @method('put')
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title mb-0">{{ __('Create New Role') }}</h5>
+                <h5 class="card-title mb-0">{{ __('Update Existing Role') }}</h5>
               </div>
               <div class="card-body py-0">
                 <div class="row g-3">
@@ -48,9 +48,9 @@
                     </a>
                   </div>
                   <div class="col-6 d-grid">
-                    <button type="submit" class="btn btn-outline-primary" >
-                      <i class="align-middle me-1" data-feather="plus"></i>
-                      <span class="ps-1">{{ __('Create New') }}</span>
+                    <button type="submit" class="btn btn-outline-secondary" >
+                      <i class="align-middle me-1" data-feather="check"></i>
+                      <span class="ps-1">{{ __('Update') }}</span>
                     </button>
                   </div>
                 </div>
@@ -61,9 +61,8 @@
         <div class="col-5">
           @include('partials.error')
         </div>
-      </div>
-    </div>
   </section>
+
 @endsection
 
 @section('script')

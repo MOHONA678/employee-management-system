@@ -57,9 +57,9 @@
                   <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-outline-primary btn-sm">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteRole({{ $role->id }})">
+                  <a href="#" class="btn btn-outline-danger btn-sm" onclick="deleteRole(event, this)" >
                     <i class="fas fa-trash-alt"></i>
-                </button>
+                  </a>
                 </form>
               </td>
             </tr>
@@ -78,5 +78,12 @@
 @endsection
 
 @section('script')
-    
+<script>
+  function deleteRole(e, t) {
+    e.preventDefault();
+    let c = confirm("Are you sure?");
+    if (!c) return;
+    t.closest('form').submit();
+  }
+</script>  
 @endsection

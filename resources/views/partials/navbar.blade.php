@@ -32,9 +32,9 @@
                 <i class="fas fa-plus align-middle"></i>
                 <span class="text-dark ps-2">{{ __('Payroll') }}</span>
             </a>
-            <a href="{{ route('salary.create') }}" class="list-group-item">
+            <a href="{{ route('user.create') }}" class="list-group-item">
                 <i class="fas fa-plus align-middle"></i>
-                <span class="text-dark ps-2">{{ __('Salary') }}</span>
+                <span class="text-dark ps-2">{{ __('User') }}</span>
             </a>
           </div>
       </div>

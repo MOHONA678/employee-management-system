@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('admin.user.create');
+        $roles = Role::all();
+        return view('admin.user.create', compact('roles'));
     }
 
     /**
@@ -33,7 +35,7 @@ class UserController extends Controller
     {
         //
         User::create($request->all());
-        return back()->with('success', 'Role crated successfully');
+        return back()->with('success', 'user crated successfully');
     }
 
     /**
@@ -50,7 +52,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        return view('admin.user.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.user.edit', compact(['roles', 'user']));
     }
 
     /**
@@ -59,6 +62,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $user->update($request->all());
+        return back()->with('success', 'user updated successfully');
     }
 
     /**
@@ -67,5 +72,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        return back()->with('success', 'user deleted successfully');
     }
 }

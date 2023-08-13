@@ -10,27 +10,36 @@
 
 @section('content')
   <section class="container-fluid">
-    <div class="container">
-      <div class="row">
+    <div class="container col-12">
+      <div class="d-flex align-items-center justify-content-center">
         <div class="col-7">
           <form action="{{ route('user.update', $user->id) }}" method="post">
             @csrf
+            @method('put')
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title mb-0">{{ __('Create New user') }}</h5>
+                <h5 class="card-title mb-0">{{ __('Update user') }}</h5>
               </div>
               <div class="card-body py-0">
                 <div class="row g-3">
                   <div class="col-12">
-                    <input type="text" name="title" class="form-control" id="title" placeholder="{{ __('user Title') }}" value="{{ $user->title }}" required />
+                    <input type="text" name="name" class="form-control" id="title" placeholder="{{ __('Name') }}" value="{{ $user->name }}" required />
                   </div>
                   <div class="col-12">
-                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="{{ __('Type details here ...') }}">{{ $user->description }}</textarea>
+                    <input type="text" name="email" class="form-control" id="title" placeholder="{{ __('Email') }}" value="{{ $user->email }}" required />
                   </div>
                   <div class="col-12">
-                    <input type="text" name="slug" class="form-control" id="slug" placeholder="{{ __('Role Slug') }}" value="{{ $user->slug }}" />
+                    <input type="text" name="phone" class="form-control" id="title" placeholder="{{ __('phone') }}" value="{{ $user->phone }}" required />
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
+                    <select name="role_id" class="form-control" id="role">
+                      <option value="">{{ __('-- User Role --') }}</option>
+                      @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" {{ $role->id === $user->role_id ? 'selected' : '' }} >{{ $role->title }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="col-6">
                     <select name="status" class="form-control" id="status">
                       <option value="">{{ __('-- Choose Status --') }}</option>
                       <option value="1" {{ $user->status == 1 ? 'selected' : '' }} >{{ __('Enable') }}</option>
@@ -48,9 +57,9 @@
                     </a>
                   </div>
                   <div class="col-6 d-grid">
-                    <button type="submit" class="btn btn-outline-primary" >
-                      <i class="align-middle me-1" data-feather="plus"></i>
-                      <span class="ps-1">{{ __('Create New') }}</span>
+                    <button type="submit" class="btn btn-outline-secondary" >
+                      <i class="align-middle me-1" data-feather="check"></i>
+                      <span class="ps-1">{{ __('Update') }}</span>
                     </button>
                   </div>
                 </div>
@@ -58,9 +67,9 @@
             </div>
           </form>
         </div>
-        <div class="col-5">
+        {{-- <div class="col-5">
           @include('partials.error')
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>
