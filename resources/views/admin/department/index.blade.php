@@ -5,11 +5,21 @@
     {{ __('Manage Departments') }}
 @endsection
 @section('header')
-  <h1 class="h3 mb-3">Dashboard</h1>
+  
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-3">Dashboard</h1>
+    <a href="{{ route('employee.create') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        <span class="ps-1">{{ __('Add New') }}</span>
+    </a>
+</div>
 @endsection
 
 @section('content')
 <section class="container-fluid">
+<div class="container-fluid p-0">
+
+</div>
     <div class="container">
       <table class="table">
         <thead>
@@ -44,7 +54,7 @@
                   <i class="fas fa-edit"></i>
                 </a>
             <form action="{{ route('department.destroy', $department->id) }}" method="post">  @csrf @method('delete')
-                <button type="submit" class="btn btn-outline-danger btn-sm" name="form" onclick="deletedepartment(e, t)">
+                <button type="submit" class="btn btn-outline-danger btn-sm"  onclick="deletedepartment(event, this)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
                 </form>
@@ -66,7 +76,7 @@
       e.preventDefault();
       let c = confirm("Are you sure?");
       if (!c) return;
-      t.closet('form').submit();
+      t.closest('form').submit();
     }
   </script>
 @endsection

@@ -10,7 +10,7 @@
         <div class="container-fluid p-0">
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-3">Employees</h1>
+                <h1 class="h3 mb-3">Dashboard</h1>
                 <a href="{{ route('employee.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus"></i>
                     <span class="ps-1">{{ __('Add New') }}</span>
@@ -18,7 +18,7 @@
             </div>
          </div>
             <h1>Employee List</h1>
-    <a href="{{ route('employee.create') }}" class="btn btn-primary">Create Employee</a>
+    <!-- <a href="{{ route('employee.create') }}" class="btn btn-primary">Create Employee</a> -->
 
     <table class="table">
         <thead>

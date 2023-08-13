@@ -17,18 +17,38 @@
                 </a>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Empty card</h5>
-                        </div>
-                        <div class="card-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h1>Leave Records</h1>
+    <a href="{{ route('leave.create') }}" class="btn btn-primary">Apply for Leave</a>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Employee</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Leave Type</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($leaves as $leave)
+                <tr>
+                    <td>{{ $leave->id }}</td>
+                    <td>{{ $leave->employee->firstname }} {{ $leave->employee->lastname }}</td>
+                    <td>{{ $leave->start_date }}</td>
+                    <td>{{ $leave->end_date }}</td>
+                    <td>{{ $leave->leave_type }}</td>
+                    <td>{{ $leave->status === 0 ? 'Pending' : 'Approved' }}</td>
+                    <td>
+                        <a href="{{ route('leaves.show', ['leave' => $leave->id]) }}" class="btn btn-info">View</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
         </div>
     </main>
 @endsection

@@ -14,7 +14,8 @@ class EmployeeController extends Controller
     public function index()
     {
         //
-        return view('admin.employee.index');
+        $employees = Employee::all();
+        return view('admin.employee.index',compact('employees'));
     }
 
     /**
@@ -23,6 +24,7 @@ class EmployeeController extends Controller
     public function create()
     {
         //
+
         return view('admin.employee.create');
     }
 
@@ -45,7 +47,7 @@ class EmployeeController extends Controller
         $employee->fill($validatedData);
         $employee->save();
     
-        return redirect('/employee/'.$employee->id)->with('success', 'Employee created successfully.');
+        return back()->with('success', 'Employee created successfully.');
     }
 
     /**
@@ -54,8 +56,7 @@ class EmployeeController extends Controller
     public function show(Employee $employee)
     {
         //
-        $employee = Employee::findOrFail($id);
-    return view('employee.show', ['employee' => $employee]);
+        return view('admin.employee.edit',compact('employee'));
     }
 
     /**
@@ -72,6 +73,16 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         //
+        $employee->firstname = $request->input('firstname');
+    $employee->lastname = $request->input('lastname'); // Update other fields accordingly
+    $employee->email = $request->input('email');
+    $employee->phone = $request->input('phone');
+    $employee->address = $request->input('address');
+    $employee->dob = $request->input('dob');
+    $employee->gender = $request->input('gender');
+    $employee->save();
+
+    return back()->with('success', 'Employee updated successfully');
     }
 
     /**
@@ -80,5 +91,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+        $employee-> delete();
+        return back()->with('success','Employee deleted successfully');
     }
 }
