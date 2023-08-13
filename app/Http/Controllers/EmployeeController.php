@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
@@ -24,8 +25,8 @@ class EmployeeController extends Controller
     public function create()
     {
         //
-
-        return view('admin.employee.create');
+        $departments = Department::all();
+        return view('admin.employee.create', compact('departments'));
     }
 
     /**
@@ -34,18 +35,19 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         //
-        $validatedData = $request->validate([
-            'firstname' => 'required|max:50',
-            'lastname' => 'required|max:50',
-            'email' => 'required|email|unique:employees',
-            'phone' => 'required|max:19',
-            // Add validation rules for other fields
-        ]);
+        // $validatedData = $request->validate([
+        //     'firstname' => 'required|max:50',
+        //     'lastname' => 'required|max:50',
+        //     'email' => 'required|email|unique:employees',
+        //     'phone' => 'required|max:19',
+        //     // Add validation rules for other fields
+        // ]);
     
         // Save the employee record
-        $employee = new Employee();
-        $employee->fill($validatedData);
-        $employee->save();
+        // $employee = new Employee();
+        // $employee->fill($validatedData);
+        // $employee->save();
+        Employee::create($request->all());
     
         return back()->with('success', 'Employee created successfully.');
     }

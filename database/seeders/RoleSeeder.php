@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,7 @@ class RoleSeeder extends Seeder
             [ 'title' => 'Payroll Manager', 'slug' => 'payroll-manager', 'status' => 1 ],
             [ 'title' => 'Data Analyst', 'slug' => 'data-analyst', 'status' => 1 ],
             [ 'title' => 'Department Head', 'slug' => 'department-head', 'status' => 1 ],
-            [ 'title' => 'Employee', 'slug' => 'employee', 'status' => 1 ],
+            [ 'title' => 'Employee', 'slug' => 'employee', 'status' => 1 ]
         ];
 
         foreach ($roles as $role) {

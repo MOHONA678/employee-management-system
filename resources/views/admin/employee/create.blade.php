@@ -15,25 +15,39 @@
 
     <form method="POST" action="{{ route('employee.store') }}">
         @csrf
-        <div class="form-group">
-            <label for="firstname">First Name</label>
-            <input type="text" name="firstname" id="firstname" class="form-control" required>
+        <div class="row g-3">
+            <div class="col-6">
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstname" id="firstname" class="form-control" />
+            </div>
+            <div class="col-6">
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" required />
+            </div>
+            <div class="col-12">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" id="phone" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label for="phone">Department</label>
+                <select name="department_id" class="form-control" id="department">
+                    @forelse ($departments as $department)
+                      <option value="{{ $department->id }}">{{ $department->title }}</option>
+                    @empty
+                      <option value="">{{ __('-- Choose One --') }}</option>
+                    @endforelse
+                </select>
+            </div>
+            
         </div>
-        <div class="form-group">
-            <label for="lastname">Last Name</label>
-            <input type="text" name="lastname" id="lastname" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" id="phone" class="form-control" required>
-        </div>
+        
         <!-- Add more input fields for other employee details -->
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary my-2">Create</button>
     </form>
 
         </div>
