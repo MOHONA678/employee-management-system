@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Http\Requests\StoreAttendanceRequest;
 use App\Http\Requests\UpdateAttendanceRequest;
+use App\Models\Employee;
 
-class AttendanceController extends Controller
-{
+class AttendanceController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('admin.attendance.index');
+    public function index() {
+        $attendances = Attendance::all();
+        return view('admin.attendance.index', compact('attendances'));
     }
 
     /**
@@ -22,7 +22,8 @@ class AttendanceController extends Controller
     public function create()
     {
         //
-        return view('admin.attendance.create');
+        $employees = Employee::all();
+        return view('admin.attendance.create', compact('employees'));
     }
 
     /**
@@ -31,6 +32,9 @@ class AttendanceController extends Controller
     public function store(StoreAttendanceRequest $request)
     {
         //
+        Attendance::create($request->all());
+        return back()->with('success', 'user crated successfully');
+       
     }
 
     /**
@@ -47,6 +51,9 @@ class AttendanceController extends Controller
     public function edit(Attendance $attendance)
     {
         //
+        $employees = Employee::all();
+        return view('admin.attendance.edit', compact(['employees ', 'attendance']));
+        
     }
 
     /**
@@ -55,6 +62,8 @@ class AttendanceController extends Controller
     public function update(UpdateAttendanceRequest $request, Attendance $attendance)
     {
         //
+        $attendance->update($request->all());
+        return back()->with('success', 'user updated successfully');
     }
 
     /**
@@ -63,5 +72,7 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
+        // $attendance->delete();
+        // return back()->with('success', 'user deleted successfully');
     }
 }

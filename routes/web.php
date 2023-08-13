@@ -41,6 +41,7 @@ Route::middleware('guest')->prefix('admin')->group( function () {
     Route::resource('payroll',PayrollController::class);
     Route::resource('roles',RoleController::class );
     Route::resource('user',UserController::class );
+    Route::resource('attendance',AttendanceController::class );
 });
 
 Route::get('/dashboard', function () {

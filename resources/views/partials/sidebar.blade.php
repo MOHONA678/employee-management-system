@@ -38,7 +38,7 @@
   </a>
           </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="javascript:void(0)">
+              <a class="sidebar-link" href="{{ route('attendance.create') }}">
     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">{{ __('Attendance Reports') }}</span>
   </a>
           </li>

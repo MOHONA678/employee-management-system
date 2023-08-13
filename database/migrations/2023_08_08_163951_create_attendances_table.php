@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('checkin_time');
             $table->time('checkout_time')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
