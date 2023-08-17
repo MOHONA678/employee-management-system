@@ -24,8 +24,13 @@
           <span class="align-middle">{{ __('Manage Departments') }}</span>
         </a>
       </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="{{ route('designation.index') }}">
+          <i class="fa-solid fa-file-pen"></i>
+          <span class="align-middle">{{ __('Manage Designations') }}</span>
+        </a>
+      </li>
       <li class="sidebar-header">{{ __('Attendance') }}</li>
-
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('schedule.index') }}">
           <i class="fa-solid fa-clock"></i>

@@ -17,6 +17,8 @@ return new class extends Migration
             // $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->bigInteger("department_id")->unsigned();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete("cascade");
+            $table->bigInteger("designation_id")->unsigned();
+            $table->foreign('designation_id')->references('id')->on('designations')->onDelete("cascade");
             $table->bigInteger("schedule_id")->unsigned();
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete("cascade");
             $table->string('firstname', 50)->nullable();

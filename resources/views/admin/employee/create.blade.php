@@ -52,6 +52,16 @@
                       @endforelse
                     </select>
                   </div>
+                  <div class="col-12">
+                    <label for="designation">Designation</label>
+                    <select name="designation-id" class="form-control" id="designation">
+                      @forelse ($designations as $designation)
+                        <option value="{{ $designation->id }}">{{ $designation->title }}</option>
+                      @empty
+                        <option value="">{{ __('-- Choose One --') }}</option>
+                      @endforelse
+                    </select>
+                  </div>
                   <div class="col-4">
                     <label for="gender">Gender</label>
                     <select name="gender" class="form-control" id="gender">

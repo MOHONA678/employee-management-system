@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PayrollController;
@@ -37,6 +38,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::get('/sample', [AdminController::class, 'sample'])->name('view.sample');
     Route::resource('employee', EmployeeController::class);
     Route::resource('department', DepartmentController::class);
+    Route::resource('designation', DesignationController::class);
     Route::resource('attendance', AttendanceController::class);
     Route::resource('leave', LeaveController::class);
     // Route::resource('salary', SalaryController::class);

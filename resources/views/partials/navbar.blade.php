@@ -16,6 +16,10 @@
             <i class="fas fa-plus align-middle"></i>
             <span class="text-dark ps-2">{{ __('Department') }}</span>
           </a>
+          <a href="{{ route('designation.create') }}" class="list-group-item">
+            <i class="fas fa-plus align-middle"></i>
+            <span class="text-dark ps-2">{{ __('Designation') }}</span>
+          </a>
           <a href="{{ route('employee.create') }}" class="list-group-item">
             <i class="fas fa-plus align-middle"></i>
             <span class="text-dark ps-2">{{ __('Employee') }}</span>
