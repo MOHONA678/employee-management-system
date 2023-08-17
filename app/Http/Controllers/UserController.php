@@ -34,7 +34,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        User::create($request->all());
+       $employee= User::create($request->all());
+         if($employee){
+            $salary = new Salary($request->all());
+            $employee->salary()->save($salary);
+         }
         return back()->with('success', 'user crated successfully');
     }
 

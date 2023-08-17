@@ -39,7 +39,7 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         //
-        Employee::create($request->all());
+        $employee = Employee::create($request->all());
         return back()->with('success', 'Employee created successfully.');
     }
 

@@ -21,4 +21,13 @@ class Salary extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+    public function salary()
+    {
+        return $this->hasOne(Salary::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }
