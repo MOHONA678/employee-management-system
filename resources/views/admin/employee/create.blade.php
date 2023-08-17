@@ -119,14 +119,47 @@
               </div>
             </div>
           </div>
+          <!-- ... Previous content ... -->
+
           <div class="col-6">
             <div class="card flex-fill">
               <div class="card-header">
-                <h5 class="card-title mb-0">{{ ('Salary') }}</h5>
+                <h5 class="card-title mb-0">{{ __('Salary') }}</h5>
               </div>
-              <div class="card-body"></div>
+              <div class="card-body">
+                <label for="basic">Basic Salary</label>
+                <input type="number" name="basic" class="form-control" id="basic" step="0.01" required>
+                
+                <label for="house_rent">House Rent Allowance</label>
+                <input type="number" name="suggestedRent" class="form-control" id="rent" step="0.01" readonly >
+          
+                <label for="medical">Medical Allowance</label>
+                <input type="number" name="suggestedAllowance" class="form-control" id="medical" step="0.01" readonly >
+          
+                <label for="transport">Transport Allowance</label>
+                <input type="number" name="transport" class="form-control" id="transport" step="0.01" readonly >
+          
+                <label for="special">Special Allowance</label>
+                <input type="number" name="specialrent" class="form-control" id="special" step="0.01" readonly >
+          
+                {{-- <label for="bonus">Bonus</label>
+                <input type="number" name="bonus" class="form-control" id="bonus" step="0.01"> --}}
+          
+                <label for="overtime_pay">Overtime Pay</label>
+                <input type="number" name="overtime_pay" class="form-control" id="overtime_pay" step="0.01" readonly >
+          
+                <label for="provident_fund">Provident Fund</label>
+                <input type="number" name="provident_fund" class="form-control" id="provident_fund" step="0.01" readonly >
+          
+                {{-- <label for="advance">Advance</label>
+                <input type="number" name="advance" class="form-control" id="advance" step="0.01" > --}}
+          
+                <label for="tax">Tax</label>
+                <input type="number" name="tax" class="form-control" id="tax" step="0.01">
+              </div>
             </div>
           </div>
+          
         </div>
       </form>
     </div>
@@ -134,4 +167,13 @@
 @endsection
 
 @section('script')
+<script>
+  $(document).ready(function() {
+    $('#basicSalary').on('ínput', function() {
+      var basicSalary = $(this).val;
+      var suggestedRent = basicSalary * 0.5;
+      ('#suggestedRent').val(suggestedRent);
+    });
+  });
+</script>
 @endsection

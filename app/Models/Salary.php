@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Salary extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'employee_id',
+        'basic',
+        'house_rent',
+        'medical',
+        // Add other fields here
+    ];
+
+    // Define relationships
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

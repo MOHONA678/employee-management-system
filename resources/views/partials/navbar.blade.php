@@ -51,7 +51,7 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-          <div class="dropdown-menu-header">4 New Notifications</div>
+          <div class="dropdown-menu-header">2 New Notifications</div>
           <div class="list-group">
             <a href="#" class="list-group-item">
               <div class="row g-0 align-items-center">

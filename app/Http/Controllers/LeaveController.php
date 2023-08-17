@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leave;
+use App\Models\Employee;
 use App\Http\Requests\StoreLeaveRequest;
 use App\Http\Requests\UpdateLeaveRequest;
 
@@ -14,7 +15,8 @@ class LeaveController extends Controller
     public function index()
     {
         //
-        return view('admin.leave.index');
+        $leaves = Leave::all();
+        return view('admin.leave.index',compact('leaves'));
     }
 
     /**
@@ -23,7 +25,10 @@ class LeaveController extends Controller
     public function create()
     {
         //
-        return view('admin.leave.create');
+        $employees = Employee::all(); // Assuming 'Employee' is your model name
+    
+        return view('admin.leave.create', compact('employees'));
+        
     }
 
     /**
@@ -32,6 +37,8 @@ class LeaveController extends Controller
     public function store(StoreLeaveRequest $request)
     {
         //
+        Leave::create($request->all());
+        return back()->with('success', 'Leave added successfully.');
     }
 
     /**
@@ -40,6 +47,7 @@ class LeaveController extends Controller
     public function show(Leave $leave)
     {
         //
+        return view('admin.employee.show',compact('leave'));
     }
 
     /**
@@ -48,6 +56,8 @@ class LeaveController extends Controller
     public function edit(Leave $leave)
     {
         //
+        $leaves = Leave::all();
+        return view('admin.leave.edit',compact('leaves'));
     }
 
     /**
@@ -56,6 +66,7 @@ class LeaveController extends Controller
     public function update(UpdateLeaveRequest $request, Leave $leave)
     {
         //
+        return redirect()->route('leave.index')->with('success', 'Leave record updated successfully.');
     }
 
     /**

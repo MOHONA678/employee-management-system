@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Leave extends Model
 {
@@ -17,8 +18,12 @@ class Leave extends Model
     ];
 
     // Define relationships
-    public function employee()
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
+        // $leave = Leave::find(1);
+        // $employee = $leave->employee;
     }
+  
+
 }

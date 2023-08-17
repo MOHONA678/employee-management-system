@@ -14,7 +14,7 @@ class SalaryController extends Controller
     public function index()
     {
         //
-        return view('admin.salarie.index');
+        return view('admin.salary.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class SalaryController extends Controller
     public function create()
     {
         //
-        return view('admin.salarie.create');
+        return view('admin.salary.create');
     }
 
     /**

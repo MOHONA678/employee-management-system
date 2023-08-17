@@ -15,7 +15,7 @@
 
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-3">Salary</h1>
-                <a href="{{ route('salary.create') }}" class="btn btn-primary">
+                <a href="{{ route('salaries.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus"></i>
                     <span class="ps-1">{{ __('Add New') }}</span>
                 </a>
@@ -23,13 +23,36 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Empty card</h5>
-                        </div>
-                        <div class="card-body">
-                        </div>
-                    </div>
+                    <a href="{{ route('salaries.create') }}" class="btn btn-primary">Add New Salary</a>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee Name</th>
+                                <th>Basic Salary</th>
+                                <th>House Rent</th>
+                                <th>Medical Allowance</th>
+                                <!-- Add other column headers as needed -->
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($salaries as $salary)
+                                <tr>
+                                    <td>{{ $salary->id }}</td>
+                                    <td>{{ $salary->employee->firstname }} {{ $salary->employee->lastname }}</td>
+                                    <td>{{ $salary->basic }}</td>
+                                    <td>{{ $salary->house_rent }}</td>
+                                    <td>{{ $salary->medical }}</td>
+                                    <!-- Add other columns as needed -->
+                                    <td>
+                                        <a href="{{ route('salaries.edit', $salary->id) }}" class="btn btn-info">Edit</a>
+                                        <!-- Add other action buttons as needed -->
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

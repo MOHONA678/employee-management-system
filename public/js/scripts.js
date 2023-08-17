@@ -15,7 +15,6 @@ $(document).ready(function() {
     .replace(/-+/g, '-');
   }
 });
-
 // Delete Data
 function del(e, t) {
   e.preventDefault();

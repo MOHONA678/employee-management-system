@@ -42,6 +42,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::resource('roles',RoleController::class );
     Route::resource('user',UserController::class );
     Route::resource('attendance',AttendanceController::class );
+    Route::resource('salaries',SalaryController::class);
 });
 
 Route::get('/dashboard', function () {

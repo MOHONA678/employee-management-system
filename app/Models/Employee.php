@@ -34,4 +34,7 @@ public function department()
 public function attendance() {
     return $this->hasMany(Attendance::class);
 }
+ public function leaves(): HasMany{
+    return $this->hasMany(Employee::class);
+ }
 }
