@@ -48,7 +48,8 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::resource('attendance',AttendanceController::class );
     Route::resource('schedule',ScheduleController::class );
     Route::post('/check',[CheckController::class,'CheckStore'])->name('check.store');
-    Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
+    Route::get('/report',[CheckController::class,'sheetReport'])->name('sheet.report');
+    // Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
 });
 
 Route::get('/dashboard', function () {

@@ -18,36 +18,118 @@
           <div class="mt-5 table-responsive">
             
             <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th class="w-25" style="width: 300px">Employee Name</th>
-                        @for ($day = 1; $day <= $daysInMonth; $day++)
-                            <th>{{ $day }}</th>
-                        @endfor
-                        <th>Total Present</th>
-                        <th>Total Absent</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($employees as $employee)
-                        <tr>
-                            <th>{{ $employee->firstname }} {{ $employee->lastname }}</th>
-                            @for ($day = 1; $day <= $daysInMonth; $day++)
-                                @php
-                                  $attendance = $employee->attendances->where('date', $date)->first();
-                                @endphp
-                                <td>
-                                    @if ($attendance)
-                                        {{-- {{ $attendance->status == "1" ? 'P' : 'A' }} --}}
-                                        {{$attendance->status}}
-                                    @endif
-                                </td>
-                            @endfor
-                            <td>{{ $userAttendanceData[$employee->id]['present'] }}</td>
-                            <td>{{ $userAttendanceData[$employee->id]['absent'] }}</td>
-                        </tr>
+              <thead>
+                <tr >
+
+                  <th>Employee Name</th>
+                  <th>Employee Position</th>
+                  <th>Employee ID</th>
+                    @php
+                        $today = today();
+                        $dates = [];
+                        
+                        for ($i = 1; $i < $today->daysInMonth + 1; ++$i) {
+                        // $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
+                        $dates[] = $i;
+                        }
+                        
+                    @endphp
+                    @foreach ($dates as $date)
+                  <th style="">
+                    
+                        
+                            {{ $date }}
+                    
+                  </th>
+              
+
                     @endforeach
-                </tbody>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+
+
+
+                @foreach ($employees as $employee)
+
+                  <input type="hidden" name="employee_id" value="{{ $employee->id }}">
+
+                    <tr>
+                        <td>{{ $employee->firstname }} {{ $employee->lastname }}</td>
+                        <td>{{ $employee->designation->title }}</td>
+                        <td>{{ $employee->id }}</td>
+
+
+
+
+
+
+                        @for ($i = 1; $i < $today->daysInMonth + 1; ++$i)
+
+
+                            @php
+                                
+                                $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
+                                
+                                $check_attd = \App\Models\Attendance::query()
+                                    ->where('employee_id', $employee->id)
+                                    ->where('attendance_date', $date_picker)
+                                    ->first();
+                                
+                                $check_depart = \App\Models\Depart::query()
+                                
+                                    ->where('employee_id', $employee->id)
+                                    ->where('depart_date', $date_picker)
+                                    ->first();
+                                
+                            @endphp
+                            <td>
+
+                                <div class="form-check form-check-inline ">
+
+                                    @if (isset($check_attd))
+                                         @if ($check_attd->status==1)
+                                         <i class="fa fa-check text-success"></i>
+                                         @else
+                                         <i class="fa fa-check text-danger"></i>
+                                         @endif
+                                       
+                                    @else
+                                    <i class="fas fa-times text-danger"></i>
+                                    @endif
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  
+                                    @if (isset($check_depart))
+                                    @if ($check_depart->status==1)
+                                    <i class="fa fa-check text-success"></i>
+                                    @else
+                                    <i class="fa fa-check text-danger"></i>
+                                    @endif
+                                  
+                               @else
+                               <i class="fas fa-times text-danger"></i>
+                               @endif
+                                
+
+                                </div>
+
+                            </td>
+
+                        @endfor
+                    </tr>
+                @endforeach
+
+
+
+
+
+            </tbody>
+
             </table>
         </div>
         </div>
@@ -61,4 +143,5 @@
 @endsection
 
 @section('script')
+
 @endsection

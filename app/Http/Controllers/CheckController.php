@@ -131,6 +131,6 @@ class CheckController extends Controller
     public function sheetReport()
     {
 
-    return view('admin.sheet-report')->with(['employees' => Employee::all()]);
+    return view('admin.attendance.report')->with(['employees' => Employee::all()]);
     }
 }

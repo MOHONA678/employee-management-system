@@ -44,13 +44,13 @@
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('attendance.report') }}">
+        <a class="sidebar-link" href="{{ route('sheet.report') }}">
           <i class="fa-solid fa-triangle-exclamation"></i>
-          <span class="align-middle">{{ __('Late Time') }}</span>
+          <span class="align-middle">{{ __('Sheet Report') }}</span>
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('attendance.report') }}">
+        <a class="sidebar-link" href="{{ route('sheet.report') }}">
           <i class="fa-solid fa-stopwatch"></i>
           <span class="align-middle">{{ __('Over Time') }}</span>
         </a>
