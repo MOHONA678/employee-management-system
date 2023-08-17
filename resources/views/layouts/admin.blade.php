@@ -63,6 +63,7 @@
 	<script src="{{asset('libs/jquery/jquery-3.7.0.min.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/scripts.js')}}"></script>
+	<script src="{{asset('js/salary.js')}}"></script>
 	@yield('script')
   </body>
 </html>
