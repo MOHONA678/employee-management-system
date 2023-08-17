@@ -27,9 +27,10 @@
           <thead>
             <tr>
   
-                <th>Employee Name</th>
-                <th>Employee Position</th>
-                <th>Employee ID</th>
+                <th scope="col" width="10%">Employee Name</th>
+                
+                <th scope="col">Employee Position</th>
+                <th scope="col">Employee ID</th>
                 @php
                     $today = today();
                     $dates = [];
@@ -41,14 +42,13 @@
                     
                 @endphp
                 @foreach ($dates as $date)
-                    <th>
+                    <th scope="col">
                         {{ $date }}
                     </th>
   
                 @endforeach
 
-                <th>Total Present</th>
-                <th>Total Absent</th>
+                
   
             </tr>
         </thead>
@@ -65,8 +65,8 @@
                     <input type="hidden" name="employee_id" value="{{ $employee->id }}">
   
                     <tr>
-                        <td>{{ $employee->firstname }} {{ $employee->lastname }}</td>
-                        <td>{{ $employee->department->title }}</td>
+                        <td class="py-0">{{ $employee->firstname }} {{ $employee->lastname }}</td>
+                        <td>{{ $employee->designation->title }}</td>
                         <td>{{ $employee->id }}</td>
   
   
@@ -95,13 +95,13 @@
                             <td>
   
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="check_box"
+                                    <input class="form-check-input checkbox" id="check_box"
                                         name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
                                         @if (isset($check_attd))  checked @endif id="inlineCheckbox1" value="1">
   
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" id="check_box"
+                                    <input class="form-check-input " id="check_box"
                                         name="depart[{{ $date_picker }}][{{ $employee->id }}]]" type="checkbox"
                                         @if (isset($check_depart))  checked @endif id="inlineCheckbox2" value="1">
   
@@ -110,8 +110,7 @@
                             </td>
   
                         @endfor
-                        <td></td>
-                        <td></td>
+                        
                     </tr>
                 @endforeach
   
@@ -129,4 +128,5 @@
 @endsection
 
 @section('script')
+
 @endsection
