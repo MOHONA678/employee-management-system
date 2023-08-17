@@ -60,10 +60,9 @@
 		@include('partials.footer')
 	  </div>
 	</div>
-	<script src="{{asset('libs/jquery/scripts.js')}}"></script>
+	<script src="{{asset('libs/jquery/jquery-3.7.0.min.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/scripts.js')}}"></script>
-	<script src="{{asset('js/jquery-3.7.0.min.js')}}"></script>
 	@yield('script')
   </body>
 </html>

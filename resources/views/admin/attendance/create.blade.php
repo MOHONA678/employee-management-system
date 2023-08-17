@@ -5,7 +5,7 @@
 @endsection
 
 @section('header')
-  <h1 class="h3 mb-3">Dashboard</h1>
+  <h1 class="h3 mb-3">Daily Attendance</h1>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
           @csrf
           <div class="card flex-fill">
             <div class="card-header">
-              <h5 class="card-title mb-0">{{ __('Create New user') }}</h5>
+              <h5 class="card-title mb-0">{{ __('Create Attendance') }}</h5>
             </div>
             <div class="card-body py-0">
               <div class="row g-3">
@@ -32,11 +32,18 @@
                     @endforelse
                   </select>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                   <input type="time" name="checkin_time" class="form-control" id="slug" placeholder="{{ __('Checkin_time') }}" value="{{ old('checkin_time') }}" />
                 </div>  
-                <div class="col-6">
+                <div class="col-4">
                   <input type="time" name="checkout_time" class="form-control" id="slug" placeholder="{{ __('Checkout_time') }}" value="{{ old('checkout_time') }}" />
+                </div>
+                <div class="col-4">
+                  <select name="status" class="form-control" id="status">
+                    <option value="">{{ __('-- Status --') }}</option>
+                    <option value="1">{{ __('Present') }}</option>
+                    <option value="0">{{ __('Absent') }}</option>
+                  </select>
                 </div>
               </div>
             </div>

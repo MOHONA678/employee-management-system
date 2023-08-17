@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('departs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("employee_id")->unsigned();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete("cascade");
             $table->boolean('state')->default(0);
-            $table->time('attendance_time')->default(date("H:i:s"));;
-            $table->date('attendance_date');
+            $table->time('depart_time')->default(date("H:i:s"));;
+            $table->date('depart_date');
             $table->boolean('type')->unsigned()->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('departs');
     }
 };

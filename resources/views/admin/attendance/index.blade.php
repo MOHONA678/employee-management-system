@@ -6,7 +6,7 @@
 
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3">{{ __('Manage attendance') }}</h1>
+    <h1 class="h3">{{ __('Daily attendance') }}</h1>
     <a href="{{route('attendance.create')}}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add new') }}</span>
@@ -19,68 +19,114 @@
   <div class="col-12">
     <div class="card flex-fill">
       <div class="card-header">              
-        <h5 class="card-title mb-0">{{ __('Employee Attendance') }}</h5>
+        <h5 class="card-title mb-0">{{ __('Employees Daily Attendance') }}</h5>
       </div>
-      <table class="table table-hover my-0">
-        <thead>
-          <tr>
-            <th class="d-none d-xl-table-cell">{{ __('SL') }}</th>
-            <th class="d-none d-xl-table-cell" >{{ __('Date') }}</th>
-            <th>{{ __('Employee') }}</th>
-            <th class="d-none d-xl-table-cell">{{ __('Checkin_time') }}</th>
-            <th>{{ __('Checkout_time') }}</th>
-            <th>{{ __('Action') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          @forelse ($attendances as $k => $attendance)
+      <div class="table-responsive">
+        <table class="table table-hover my-0 table-bordered">
+       
+          <thead>
             <tr>
-              <td class="d-none d-xl-table-cell">{{ $k + 1 }}</td>
-              <td class="d-none d-xl-table-cell">
-                <strong>{{ $attendance->date }}</strong>
-              </td>
-              <td>
-                <strong>{{ $attendance->employee->firstname }} {{ $attendance->employee->lastname }}</strong>
-              </td>
-              <td class="d-none d-xl-table-cell">{{ $attendance->checkin_time }}</td>
-              <td>{{ $attendance->checkout_time }}</td>
-              <td width="90px">
-                <a href="{{ route('attendance.edit', $attendance->id) }}" class="btn btn-outline-primary btn-sm">
-                  <i class="fas fa-edit"></i>
-                </a>
-                {{-- <form action="{{ route("attendance.destroy", $attendance->id) }}" method="post">
-                  @csrf
-                  @method("delete")
-                  <a href="{{ route('attendance.edit', $attendance->id) }}" class="btn btn-outline-primary btn-sm">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteUser(event, this)">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </form> --}}
-              </td>
+  
+                <th>Employee Name</th>
+                <th>Employee Position</th>
+                <th>Employee ID</th>
+                @php
+                    $today = today();
+                    $dates = [];
+                    
+                    for ($i = 1; $i < $today->daysInMonth + 1; ++$i) {
+                        // $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
+                        $dates[] = $i;
+                    }
+                    
+                @endphp
+                @foreach ($dates as $date)
+                    <th>
+                        {{ $date }}
+                    </th>
+  
+                @endforeach
+
+                <th>Total Present</th>
+                <th>Total Absent</th>
+  
             </tr>
-          @empty
-          <tr>
-            <td colspan="6" class="text-center">
-              No data found
-            </td>
-          </tr>
-          @endforelse
+        </thead>
+  
+        <tbody>
+  
+  
+            <form action="{{route('check.store')}}" method="post">
+               
+                <button type="submit" class="btn btn-success" style="display: flex; margin:10px">submit</button>
+                @csrf
+                @foreach ($employees as $employee)
+  
+                    <input type="hidden" name="employee_id" value="{{ $employee->id }}">
+  
+                    <tr>
+                        <td>{{ $employee->firstname }} {{ $employee->lastname }}</td>
+                        <td>{{ $employee->department->title }}</td>
+                        <td>{{ $employee->id }}</td>
+  
+  
+  
+  
+  
+  
+                        @for ($i = 1; $i < $today->daysInMonth + 1; ++$i)
+  
+  
+                            @php
+                                
+                                $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
+                                
+                                $check_attd = \App\Models\Attendance::query()
+                                    ->where('employee_id', $employee->id)
+                                    ->where('attendance_date', $date_picker)
+                                    ->first();
+                                
+                                $check_depart = \App\Models\Depart::query()
+                                    ->where('employee_id', $employee->id)
+                                    ->where('depart_date', $date_picker)
+                                    ->first();
+                                
+                            @endphp
+                            <td>
+  
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="check_box"
+                                        name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
+                                        @if (isset($check_attd))  checked @endif id="inlineCheckbox1" value="1">
+  
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" id="check_box"
+                                        name="depart[{{ $date_picker }}][{{ $employee->id }}]]" type="checkbox"
+                                        @if (isset($check_depart))  checked @endif id="inlineCheckbox2" value="1">
+  
+                                </div>
+  
+                            </td>
+  
+                        @endfor
+                        <td></td>
+                        <td></td>
+                    </tr>
+                @endforeach
+  
+            </form>
+  
+  
         </tbody>
-      </table>
+  
+        </table>
+      </div>
+      
     </div>
   </div>
 </section>
 @endsection
 
 @section('script')
-<script>
-  function deleteUser(e, t) {
-    e.preventDefault();
-    let c = confirm("Are you sure?");
-    if (!c) return;
-    t.closest('form').submit();
-  }
-</script>  
 @endsection

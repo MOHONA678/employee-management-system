@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LeaveController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +44,9 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::resource('roles',RoleController::class );
     Route::resource('user',UserController::class );
     Route::resource('attendance',AttendanceController::class );
+    Route::resource('schedule',ScheduleController::class );
+    Route::post('/check',[CheckController::class,'CheckStore'])->name('check.store');
+    Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
 });
 
 Route::get('/dashboard', function () {

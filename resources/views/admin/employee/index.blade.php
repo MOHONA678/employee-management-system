@@ -28,6 +28,7 @@
               <th>SL</th>
               <th>Name of Employee</th>
               <th>Department</th>
+              <th>Working Schedule</th>
               <th>Date Joined</th>
               <th>Actions</th>
             </tr>
@@ -40,6 +41,7 @@
                   <strong>{{ $employee->firstname }} {{ $employee->lastname }}</strong>
                 </td>
                 <td>{{ $employee->department->title }}</td>
+                <td>{{ $employee->schedule->title  }}</td>
                 <td>{{ $employee->created_at->diffforhumans() }}</td>
                 <td class="d-flex align-items-center">
                   <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-info btn-sm">
