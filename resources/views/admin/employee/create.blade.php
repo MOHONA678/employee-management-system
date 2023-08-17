@@ -52,7 +52,7 @@
                       @endforelse
                     </select>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="gender">Gender</label>
                     <select name="gender" class="form-control" id="gender">
                       <option value="">{{ __('-- Choose One --') }}</option>
@@ -61,7 +61,7 @@
                       <option value="3">{{ __('Others') }}</option>
                     </select>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="religion">Religion</label>
                     <select name="religion" class="form-control" id="religion">
                       <option value="">{{ __('-- Choose One --') }}</option>
@@ -72,7 +72,7 @@
                       <option value="5">{{ __('Others') }}</option>
                     </select>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="marital">Marital Status</label>
                     <select name="marital" class="form-control" id="marital">
                       <option value="">{{ __('-- Choose One --') }}</option>
@@ -80,6 +80,16 @@
                       <option value="2">{{ __('Unmarried') }}</option>
                       <option value="3">{{ __('Divorced') }}</option>
                       <option value="4">{{ __('Widowed') }}</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="schedule">Working Schedule</label>
+                    <select name="schedule_id" class="form-control" id="schedule">
+                      @forelse ($schedules as $schedule)
+                        <option value="{{ $schedule->id }}"> {{ $schedule->title }} </option>
+                      @empty
+                      <option value="">{{ __('--Choose Schedule--') }}</option>
+                      @endforelse
                     </select>
                   </div>
                   <div class="col-6">

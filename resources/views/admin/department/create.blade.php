@@ -5,7 +5,7 @@
 @endsection
 
 @section('header')
-  <h1 class="h3 mb-3">Dashboard</h1>
+  <h1 class="h3 mb-3">Create Department</h1>
 @endsection
 
 @section('content')

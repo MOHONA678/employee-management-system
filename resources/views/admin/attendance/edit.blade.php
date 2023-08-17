@@ -33,18 +33,25 @@
                     @endforelse
                   </select>
                 </div>
-                <div class="col-12">
+                <div class="col-4">
                   <input type="time" name="Checkin_time" class="form-control" id="title" placeholder="{{ __('Checkin_time') }}" value="{{ $attendance->checkin_time }}" required />
                 </div>
-                <div class="col-12">
+                <div class="col-4">
                   <input type="time" name="Checkout_time" class="form-control" id="title" placeholder="{{ __('Checkout_time') }}" value="{{ $attendance->checkout_time }}" required />
+                </div>
+                <div class="col-4">
+                  <select name="status" class="form-control" id="status">
+                    <option value="">{{ __('-- Status --') }}</option>
+                    <option value="1" {{ $attendance->status ===  1 ? 'selected' : '' }} >{{ __('Present') }}</option>
+                    <option value="0" {{ $attendance->status ===  0 ? 'selected' : '' }} >{{ __('Absent') }}</option>
+                  </select>
                 </div>
               </div>
             </div>
             <div class="card-footer">
               <div class="row">
                 <div class="col-6 d-grid">
-                  <a href="{{ route('user.index') }}" class="btn btn-outline-secondary" >
+                  <a href="{{ route('attendance.index') }}" class="btn btn-outline-secondary" >
                     <i class="align-middle me-1" data-feather="arrow-left"></i>
                     <span class="ps-1">{{ __('Discard') }}</span>
                   </a>

@@ -54,7 +54,7 @@
                       @endforelse
                     </select>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="gender">Gender</label>
                     <select name="gender" class="form-control" id="gender">
                       <option value="">{{ __('-- Choose One --') }}</option>
@@ -63,7 +63,7 @@
                       <option value="3" {{ $employee->gender === 3 ? 'selected' : '' }} >{{ __('Others') }}</option>
                     </select>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="religion">Religion</label>
                     <select name="religion" class="form-control" id="religion">
                       <option value="">{{ __('-- Choose One --') }}</option>
@@ -74,7 +74,7 @@
                       <option value="5" {{ $employee->religion === 5 ? 'selected' : '' }} >{{ __('Others') }}</option>
                     </select>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label for="marital">Marital Status</label>
                     <select name="marital" class="form-control" id="marital">
                       <option value="">{{ __('-- Choose One --') }}</option>
@@ -82,6 +82,16 @@
                       <option value="2" {{ $employee->marital === 2 ? 'selected' : '' }} >{{ __('Unmarried') }}</option>
                       <option value="3" {{ $employee->marital === 3 ? 'selected' : '' }} >{{ __('Divorced') }}</option>
                       <option value="4" {{ $employee->marital === 4 ? 'selected' : '' }} >{{ __('Widowed') }}</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="schedule">Working Schedule</label>
+                    <select name="schedule_id" class="form-control" id="schedule">
+                      @forelse ($schedules as $schedule)
+                        <option value="{{ $schedule->id }}" {{ $schedule->id === $employee->schedule_id ? 'selected' : '' }} > {{ $schedule->title }} </option>
+                      @empty
+                        <option value="">{{ __('--Choose Schedule--') }}</option>
+                      @endforelse
                     </select>
                   </div>
                   <div class="col-6">
