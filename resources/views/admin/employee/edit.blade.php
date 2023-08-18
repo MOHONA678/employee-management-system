@@ -54,6 +54,16 @@
                       @endforelse
                     </select>
                   </div>
+                  <div class="col-12">
+                    <label for="designation">Designation</label>
+                    <select name="designation_id" class="form-control" id="designation">
+                      @forelse ($designations as $designation)
+                        <option value="{{ $designation->id }}" {{ $designation->id === $employee->designation_id ? 'selected' : '' }} >{{ $designation->title }}</option>
+                      @empty
+                        <option value="">{{ __('-- Choose One --') }}</option>
+                      @endforelse
+                    </select>
+                  </div>
                   <div class="col-4">
                     <label for="gender">Gender</label>
                     <select name="gender" class="form-control" id="gender">
@@ -136,7 +146,37 @@
               <div class="card-header">
                 <h5 class="card-title mb-0">{{ ('Salary') }}</h5>
               </div>
-              <div class="card-body"></div>
+              <div class="card-body">
+                <label for="basic">Basic Salary</label>
+                <input type="number" name="basic" class="form-control" id="basic" step="0.01" value="{{ isset($employee->salary->basic) ? $employee->salary->basic : '' }}" required>
+                
+                <label for="house_rent">House Rent Allowance</label>
+                <input type="number" name="house_rent" class="form-control" id="rent" step="0.01" value="{{ isset($employee->salary->house_rent) ? $employee->salary->house_rent : '' }}" readonly >
+          
+                <label for="medical">Medical Allowance</label>
+                <input type="number" name="medical" class="form-control" id="medical" step="0.01" value="{{ isset($employee->salary->medical) ? $employee->salary->medical : '' }}" readonly >
+          
+                <label for="transport">Transport Allowance</label>
+                <input type="number" name="transport" class="form-control" id="transport" step="0.01" value="{{ isset($employee->salary->transport) ? $employee->salary->transport : '' }}" readonly >
+          
+                <label for="special">Special Allowance</label>
+                <input type="number" name="special" class="form-control" id="special" step="0.01" value="{{ isset($employee->salary->special) ? $employee->salary->special : '' }}" readonly >
+          
+                {{-- <label for="bonus">Bonus</label>
+                <input type="number" name="bonus" class="form-control" id="bonus" step="0.01"> --}}
+          
+                <label for="overtime_pay">Overtime Pay</label>
+                <input type="number" name="overtime_pay" class="form-control" id="overtime_pay" step="0.01" value="{{ isset($employee->salary->overtime_pay) ? $employee->salary->overtime_pay : '' }}" readonly >
+          
+                <label for="provident_fund">Provident Fund</label>
+                <input type="number" name="provident_funt" class="form-control" id="provident_fund" step="0.01" value="{{ isset($employee->salary->provident_funt) ? $employee->salary->provident_funt : '' }}" readonly >
+          
+                {{-- <label for="advance">Advance</label>
+                <input type="number" name="advance" class="form-control" id="advance" step="0.01" > --}}
+          
+                <label for="tax">Tax</label>
+                <input type="number" name="tax" class="form-control" id="tax" step="0.01" value="{{ isset($employee->salary->tax) ? $employee->salary->tax : '' }}" >
+              </div>
             </div>
           </div>
         </div>

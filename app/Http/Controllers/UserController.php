@@ -66,7 +66,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $user->update($request->all());
+        $employee = User::findorFail($id);
+        $employee->update($request->all());
+        $salary = $employee->salary?: new Salary();
+        $salary->fill($request->all());
+        $employee->salary()->save($salary);
         return back()->with('success', 'user updated successfully');
     }
 

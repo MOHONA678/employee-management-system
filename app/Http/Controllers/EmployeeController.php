@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\Salary;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Designation;
@@ -40,6 +41,10 @@ class EmployeeController extends Controller
     {
         //
         $employee = Employee::create($request->all());
+        if($employee) {
+            $salary = new Salary($request->all());
+            $employee->salary()->save($salary);
+        }
         return back()->with('success', 'Employee created successfully.');
     }
 
@@ -59,8 +64,9 @@ class EmployeeController extends Controller
     {
         //
         $departments = Department::all();
+        $designations = Designation::all();
         $schedules = Schedule::all();
-        return view('admin.employee.edit',compact('employee', 'departments', 'schedules'));
+        return view('admin.employee.edit',compact('employee', 'departments', 'designations', 'schedules'));
     }
 
     /**
@@ -70,6 +76,11 @@ class EmployeeController extends Controller
     {
         //
         $employee->update($request->all());
+        $salary = $employee->salary ?: new Salary();
+        $salary->fill($request->all());
+        $employee->salary()->save($salary);
+
+        // return Redirect::route('admin.employee.edit')->with('success', 'Employee updated successfully');
         return back()->with('success', 'Employee updated successfully');
     }
 
