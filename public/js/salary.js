@@ -6,11 +6,15 @@ $(document).ready(function() {
     var transport = transportallowance(basic);
     var special = specialAllowance(basic);
     var overtime = overtimerate(basic);
-    $('#rent').val(rent);
-    $('#medical').val(medical);
-    $('#transport').val(transport);
-    $('#special').val(special);
-    $('#overtime_pay').val(overtime);
+    $('#rent').val(rent.toFixed(2));
+    $('#medical').val(medical.toFixed(2));
+    $('#transport').val(transport.toFixed(2));
+    $('#special').val(special.toFixed(2));
+    $('#overtime_pay').val(overtime.toFixed(2));
+    var basic = parseFloat($(this).val());
+    var taxRate = 0.15; // You can adjust the tax rate as needed
+    var tax = basic * taxRate;
+    $('#tax').val(tax.toFixed(2));
   });
   function houseRent(basic) {
     if (basic >= 50000) {
@@ -64,51 +68,17 @@ $(document).ready(function() {
      var rate = (basic/1000)*5;
      return rate;
   }
-  $(document).ready(function() {
-    $('#basic').on('input', function() {
-        var basic = parseFloat($(this).val());
-        var taxRate = 0.15; // You can adjust the tax rate as needed
-
-        var tax = basic * taxRate;
-        $('#tax').val(tax.toFixed(2));
-        
-        // Calculate and set other fields similarly
-    });
 });
-});
-// gross salary
-$(document).ready(function() {
-  // $('#basic').on('input', function() {
-  //   // var basic = $(this).val();
-  //   // var rent = houseRent(basic); 
-  //   // var medical = medicalrent(basic); 
-  //   // var transport = transportallowance(basic); 
-  //   // var special = specialAllowance(basic); 
-  //   // var overtime = overtimerate(basic); 
 
-    
-  //   // $('#transport').val(transport);
-  //   // $('#special').val(special);
-  //   // $('#overtime_pay').val(overtime);
-    
-  //   // Calculate the gross salary and update the gross_salary field
-  // });
-  $('#grossSalary').on('load', function() {
-    console.log("Working");
-    var basic = $('#rent').val();
-    var rent = $('#medical').val();
-    var grossSalary = calculateGrossSalary(basic, rent);
-    // var grossSalary = calculateGrossSalary(basic, rent, medical, transport, special, overtime);
-    $('#grossSalary').val(grossSalary);
-  })
-  
-  // Function to calculate gross salary
-  function calculateGrossSalary(basic, rent) {
-    var grossSalary = parseFloat(basic) + parseFloat(rent);
-    return grossSalary;
+$(document).ready(function () {
+  console.log("Working");
+  var basic = $("#basic").val(this.basic);
+  var rent = $("#rent").val(this.rent);
+  var gross = grossSalary(basic, rent);
+  $("#grossSalary").val(this.gross);
+
+  function grossSalary(basic, rent) {
+    gross = basic + rent;
+    return gross;
   }
-  // function calculateGrossSalary(basic, rent, medical, transport, special, overtime) {
-  //   var grossSalary = parseFloat(basic) + parseFloat(rent) + parseFloat(medical) + parseFloat(transport) + parseFloat(special) + parseFloat(overtime);
-  //   return grossSalary;
-  // }
 });
