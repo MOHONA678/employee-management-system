@@ -80,21 +80,25 @@
                             @php
                                 
                                 $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
+
+                                $isFriday = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->isFriday();
                                 
                                 $check_attd = \App\Models\Attendance::query()
                                     ->where('employee_id', $employee->id)
                                     ->where('attendance_date', $date_picker)
+                                    // ->where('status', $date_picker)
                                     ->first();
                                 
                                 $check_depart = \App\Models\Depart::query()
                                     ->where('employee_id', $employee->id)
                                     ->where('depart_date', $date_picker)
+                                    // ->where('status', $date_picker)
                                     ->first();
                                 
                             @endphp
-                            <td>
+                            <td class="@if ($isFriday) bg-light @endif">
   
-                                <div class="form-check form-check-inline">
+                                {{-- <div class="form-check form-check-inline">
                                     <input class="form-check-input checkbox" id="check_box"
                                         name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
                                         @if (isset($check_attd))  checked @endif id="inlineCheckbox1" value="1">
@@ -105,6 +109,31 @@
                                         name="depart[{{ $date_picker }}][{{ $employee->id }}]]" type="checkbox"
                                         @if (isset($check_depart))  checked @endif id="inlineCheckbox2" value="1">
   
+                                </div> --}}
+
+                                {{-- <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox" id="check_box"
+                                        name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
+                                       @if (isset($check_attd)) checked @endif id="inlineCheckbox1" >
+                                       
+  
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox" id="check_box"
+                                        name="depart[{{ $date_picker }}][{{ $employee->id }}]]" type="checkbox"
+                                       @if (isset($check_depart)) checked @endif id="inlineCheckbox2" >
+  
+                                </div> --}}
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox" id="check_box_attd_{{ $i }}"
+                                        name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
+                                        @if (isset($check_attd)) checked @endif >
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input checkbox" id="check_box_depart_{{ $i }}"
+                                        name="depart[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
+                                        @if (isset($check_depart)) checked @endif >
                                 </div>
   
                             </td>
@@ -128,5 +157,21 @@
 @endsection
 
 @section('script')
+{{-- <input type="checkbox" name="status" id="statusCheckbox">
+<label for="statusCheckbox">Status</label> --}}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // const checkbox = document.getElementById("statusCheckbox");
+    const checkbox = document.querySelector(".checkbox");
+    checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+            checkbox.value = "1"; // Checked, value is 1
+        } else {
+            checkbox.value = "0"; // Unchecked, value is 0
+        }
+    });
+});
+</script>
 
 @endsection

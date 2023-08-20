@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('attendance_time')->default(date("H:i:s"));;
             $table->date('attendance_date');
             $table->boolean('type')->unsigned()->default(0);
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

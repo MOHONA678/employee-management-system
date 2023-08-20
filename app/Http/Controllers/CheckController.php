@@ -75,10 +75,17 @@ class CheckController extends Controller
             foreach ($request->attd as $keys => $values) {
                 foreach ($values as $key => $value) {
                     if ($employee = Employee::whereId(request('employee_id'))->first()) {
+
+                        $isFriday = \Carbon\Carbon::createFromFormat('Y-m-d', $keys)->isFriday();
+
+                        // $checkboxValue = isset($value) ? 1 : 0;
+                        // $checkboxValue = $request->has("attd.$keys.$key") ? 1 : ($isFriday ? null : 0);
+                        $checkboxValue = $request->has("attd.$keys.$key") ? 1 : 0;
                         if (
                             !Attendance::whereAttendance_date($keys)
                                 ->whereEmployee_id($key)
                                 ->whereType(0)
+                                // ->whereStatus(NULL)
                                 ->first()
                         ) {
                             $data = new Attendance();
@@ -87,12 +94,15 @@ class CheckController extends Controller
                             $emp_req = Employee::whereId($data->employee_id)->first();
                             $data->attendance_time = date('H:i:s', strtotime($emp_req->schedule->first()->time_in));
                             $data->attendance_date = $keys;
-                            
-                            // $emps = date('H:i:s', strtotime($employee->schedules->first()->time_in));
-                            // if (!($emps >= $data->attendance_time)) {
-                            //     $data->status = 0;
-                           
+
+                            // if ($emp_req->schedule->first()->time_in <= $data->attendance_time) {
+                            //     $data->status = 1; // On time or late
+                            // } else {
+                            //     $data->status = 0; // Early or missed
                             // }
+                            // $data->status = $checkboxValue;
+                            $data->status = $isFriday && $checkboxValue === 0 ? null : $checkboxValue;
+
                             $data->save();
                         }
                     }
@@ -114,11 +124,17 @@ class CheckController extends Controller
                             $emp_req = Employee::whereId($data->employee_id)->first();
                             $data->depart_time = $emp_req->schedule->first()->time_out;
                             $data->depart_date = $keys;
-                            // if ($employee->schedules->first()->time_out <= $data->leave_time) {
+                            // if ($employee->schedule->first()->time_out <= $data->depart_time) {
                             //     $data->status = 1;
                                 
                             // }
-                            // 
+                            if ($employee->schedule->first()->time_out <= $data->depart_time) {
+                                $data->status = 1;
+                            } else {
+                                $data->status = null; // Set to null when not met
+    
+                            }
+                            
                             $data->save();
                         }
                     }

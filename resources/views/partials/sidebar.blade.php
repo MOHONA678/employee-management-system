@@ -1,7 +1,7 @@
 <aside id="sidebar" class="sidebar js-sidebar">
   <div class="sidebar-content js-simplebar">
     <a class="sidebar-brand" href="index.html">
-      <span class="align-middle">AdminKit</span>
+      <span class="align-middle">HRMS</span>
     </a>
 
     <ul class="sidebar-nav">
@@ -11,6 +11,20 @@
           <span class="align-middle">{{ __('Dashboard') }}</span>
         </a>
       </li>
+      <li class="sidebar-header">{{ __('User Management') }}</li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="{{ route('user.index') }}">
+          <i class="fas fa-user align-middle"></i>
+          <span class="align-middle">{{ __('Manage Users') }}</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="{{ route('roles.index') }}">
+          <i class="fas fa-user-shield align-middle"></i>
+          <span class="align-middle">{{ __('User Settings') }}</span>
+        </a>
+      </li>
+
       <li class="sidebar-header">{{ __('Employee Management') }}</li>
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('employee.index') }}">
@@ -82,19 +96,7 @@
           <span class="align-middle">{{ __('Generate Payroll') }}</span>
         </a>
       </li>
-      <li class="sidebar-header">{{ __('User Management') }}</li>
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('user.index') }}">
-          <i class="fas fa-user align-middle"></i>
-          <span class="align-middle">{{ __('Manage Users') }}</span>
-        </a>
-      </li>
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('roles.index') }}">
-          <i class="fas fa-user-shield align-middle"></i>
-          <span class="align-middle">{{ __('User Settings') }}</span>
-        </a>
-      </li>
+      
     </ul>
   </div>
 </aside>
