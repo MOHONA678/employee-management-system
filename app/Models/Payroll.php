@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Payroll extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'employee_id',
+        'month',
+        'gross_salary',
+        'deduction',
+        'net_salary',
+    ];
+    // Define relationships
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

@@ -64,6 +64,17 @@ $(document).ready(function() {
      var rate = (basic/1000)*5;
      return rate;
   }
+  $(document).ready(function() {
+    $('#basic').on('input', function() {
+        var basic = parseFloat($(this).val());
+        var taxRate = 0.15; // You can adjust the tax rate as needed
+
+        var tax = basic * taxRate;
+        $('#tax').val(tax.toFixed(2));
+        
+        // Calculate and set other fields similarly
+    });
+});
 //   function houseRent(basic) {
 //     if (basic >= 50000) {
 //       suggestedRent = basic * 0.050;
