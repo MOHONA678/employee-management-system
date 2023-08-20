@@ -77,7 +77,25 @@
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('payroll.create') }}l">
+        <a class="sidebar-link" href="{{ route('payroll.create') }}">
+          <i class="fa-solid fa-file-export"></i>
+          <span class="align-middle">{{ __('Generate Payroll') }}</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="javascript:void(0)">
+          <i class="fa-solid fa-file-export"></i>
+          <span class="align-middle">{{ __('Gross Salary') }}</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="javascript:void(0)">
+          <i class="fa-solid fa-file-export"></i>
+          <span class="align-middle">{{ __('Deductions') }}</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="javascript:void(0)">
           <i class="fa-solid fa-file-export"></i>
           <span class="align-middle">{{ __('Generate Payroll') }}</span>
         </a>

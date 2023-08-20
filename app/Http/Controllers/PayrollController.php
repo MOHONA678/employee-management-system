@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payroll;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class PayrollController extends Controller
@@ -13,7 +14,10 @@ class PayrollController extends Controller
     public function index()
     {
         //
-        return view('admin.payroll.index');
+        $employees = Employee::all();
+       // Calculate salary for each employee based on attendance and formulas
+       return view('admin.payroll.index', ['employees' => $employees]);
+       
     }
 
     /**
@@ -21,8 +25,18 @@ class PayrollController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.payroll.create');
+    
+         // Fetch employees and dates from your data source
+    $employees = Employee::all(); // Replace 'Employee' with your actual model class
+    $today =today();
+    $dates = [];
+
+    for ($i = 1; $i <= $today->daysInMonth; ++$i) {
+        $dates[] = $i;
+    }
+
+    return view('admin.payroll.create', compact('employees','dates'));
+        
     }
 
     /**

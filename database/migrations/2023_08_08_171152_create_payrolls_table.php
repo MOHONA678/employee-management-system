@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger("employee_id")->unsigned();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete("cascade");
-            $table->tinyInteger('month');
-            $table->decimal('gross_salary', 10, 2);
-            $table->decimal('deduction', 10, 2);
-            $table->decimal('net_salary', 10, 2);
+            $table->tinyInteger('month')->nullable();
+            $table->decimal('gross_salary', 10, 2)->nullable();
+            $table->decimal('deduction', 10, 2)->nullable();
+            $table->decimal('net_salary', 10, 2)->nullable();
             $table->timestamps();
         });
     }
