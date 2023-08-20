@@ -75,16 +75,40 @@ $(document).ready(function() {
         // Calculate and set other fields similarly
     });
 });
-//   function houseRent(basic) {
-//     if (basic >= 50000) {
-//       suggestedRent = basic * 0.050;
-//     } else if (basic >= 25000 && basic <= 49999) {
-//       suggestedRent = basic * 0.065;
-//     } else if (basic >= 10000 && basic <= 24999) {
-//       suggestedRent = basic * 0.070;
-//     } else {  
-//       suggestedRent = basic * 0;
-//     }
-//     return suggestedRent;
-//   }
+});
+// gross salary
+$(document).ready(function() {
+  // $('#basic').on('input', function() {
+  //   // var basic = $(this).val();
+  //   // var rent = houseRent(basic); 
+  //   // var medical = medicalrent(basic); 
+  //   // var transport = transportallowance(basic); 
+  //   // var special = specialAllowance(basic); 
+  //   // var overtime = overtimerate(basic); 
+
+    
+  //   // $('#transport').val(transport);
+  //   // $('#special').val(special);
+  //   // $('#overtime_pay').val(overtime);
+    
+  //   // Calculate the gross salary and update the gross_salary field
+  // });
+  $('#grossSalary').on('load', function() {
+    console.log("Working");
+    var basic = $('#rent').val();
+    var rent = $('#medical').val();
+    var grossSalary = calculateGrossSalary(basic, rent);
+    // var grossSalary = calculateGrossSalary(basic, rent, medical, transport, special, overtime);
+    $('#grossSalary').val(grossSalary);
+  })
+  
+  // Function to calculate gross salary
+  function calculateGrossSalary(basic, rent) {
+    var grossSalary = parseFloat(basic) + parseFloat(rent);
+    return grossSalary;
+  }
+  // function calculateGrossSalary(basic, rent, medical, transport, special, overtime) {
+  //   var grossSalary = parseFloat(basic) + parseFloat(rent) + parseFloat(medical) + parseFloat(transport) + parseFloat(special) + parseFloat(overtime);
+  //   return grossSalary;
+  // }
 });

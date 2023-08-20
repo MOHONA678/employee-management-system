@@ -78,4 +78,9 @@ class PayrollController extends Controller
     {
         //
     }
+
+    public function grossSalary() {
+        $employees = Employee::all();
+        return view('admin.payroll.gross', compact('employees'));
+    }
 }
