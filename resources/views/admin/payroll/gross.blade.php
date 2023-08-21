@@ -22,7 +22,7 @@
         <h5 class="card-title mb-0">{{ __('Employees Daily Attendance') }}</h5>
       </div>
       <div class="table-responsive">
-        <table class="table table-hover my-0 table-bordered">   
+        <table class="table table-hover my-0 table-bordered data-table">   
           <thead>
             <tr>
   

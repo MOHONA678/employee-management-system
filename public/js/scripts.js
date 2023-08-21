@@ -43,3 +43,13 @@ function formatPhoneNumber(input) {
   }
   input.value = phoneNumber;
 }
+
+$(document).ready(function() {
+  let employeeCounter = 1;
+  $("#generate").click(function() {
+    const now = new Date();
+    const newEmployeeId = "EMP" + "-" + now.getFullYear() + (now.getMonth() + 1).toString().padStart(2, "0") + now.getDate().toString().padStart(2, "0") + "-" + employeeCounter.toString().padStart(3, '0');
+    $("#employeeId").val(newEmployeeId);
+    employeeCounter++;
+  });
+});

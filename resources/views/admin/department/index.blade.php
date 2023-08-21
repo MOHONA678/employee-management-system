@@ -18,7 +18,7 @@
 <section class="row">
   <div class="col-12">
     <div class="card flex-fill">
-      <table class="table">
+      <table class="table data-table">
         <thead>
           <tr>
             <th scope="col">SL</th>

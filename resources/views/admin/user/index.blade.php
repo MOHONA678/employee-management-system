@@ -21,7 +21,7 @@
         <div class="card-header">              
           <h5 class="card-title mb-0">{{ __('User DataTable') }}</h5>
         </div>
-        <table class="table table-hover my-0">
+        <table class="table table-hover my-0 data-table">
           <thead>
             <tr>
               <th class="d-none d-xl-table-cell">{{ __('SL') }}</th>

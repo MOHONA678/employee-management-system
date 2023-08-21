@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AllowanceController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DepartmentController;
@@ -39,9 +40,10 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::resource('employee', EmployeeController::class);
     Route::resource('department', DepartmentController::class);
     Route::resource('designation', DesignationController::class);
-    Route::resource('attendance', AttendanceController::class);
+    // Route::resource('attendance', AttendanceController::class);
     Route::resource('leave', LeaveController::class);
     // Route::resource('salary', SalaryController::class);
+    Route::resource('allowance',AllowanceController::class);
     Route::resource('payroll',PayrollController::class);
     Route::resource('roles',RoleController::class );
     Route::resource('user',UserController::class );

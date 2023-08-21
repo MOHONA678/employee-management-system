@@ -18,11 +18,15 @@ class Employee extends Model
         'schedule_id',
         'firstname',
         'lastname',
+        'unique_id',
         'email',
         'phone',
         'address',
         'dob',
         'gender',
+        'religion',
+        'marital',
+        'status'
     ];
 // Define relationships
     public function user(): BelongsTo {
@@ -55,6 +59,10 @@ class Employee extends Model
 
     public function salary(): HasOne {
         return $this->hasOne(Salary::class);
+    }
+
+    public function allowances(): HasMany {
+        return $this->hasMany(Allowance::class);
     }
 
 }

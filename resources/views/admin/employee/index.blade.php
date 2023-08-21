@@ -22,13 +22,13 @@
         <div class="card-header">
           <h5 class="card-title mb-0">Employee DataTable</h5>
         </div>
-        <table class="table">
+        <table class="table data-table">
           <thead>
             <tr>
               <th>SL</th>
               <th>Name of Employee</th>
               <th>Department</th>
-              <th>Working Schedule</th>
+              <th>Schedule</th>
               <th>Date Joined</th>
               <th>Actions</th>
             </tr>

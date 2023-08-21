@@ -21,7 +21,7 @@
             <input type="date" name="end_date" id="" /> --}}
           </div>
           <div class="mt-5 table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped data-table">
               <thead>
                 <tr>
                   <th>{{ __('Employee Name') }}</th>

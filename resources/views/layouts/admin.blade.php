@@ -13,6 +13,7 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
   </head>
@@ -61,9 +62,15 @@
 	  </div>
 	</div>
 	<script src="{{asset('libs/jquery/jquery-3.7.0.min.js')}}"></script>
+	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/scripts.js')}}"></script>
 	<script src="{{asset('js/salary.js')}}"></script>
+	{{-- <script>
+	  $(document).ready( function () {
+    	$('.data-table').DataTable();
+	  } );
+	</script> --}}
 	@yield('script')
   </body>
 </html>
