@@ -131,4 +131,8 @@ class AttendanceController extends Controller {
         // return view('admin.attendance.report');
     // }
     }
+
+    public function barcode() {
+        return view('admin.attendance.barcode');
+    }
 }

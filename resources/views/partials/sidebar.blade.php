@@ -34,13 +34,13 @@
       </li>
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('department.index') }}">
-          <i class="fa-solid fa-file-pen"></i>
+          <i class="fa-solid fa-users-gear"></i>
           <span class="align-middle">{{ __('Manage Departments') }}</span>
         </a>
       </li>
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('designation.index') }}">
-          <i class="fa-solid fa-file-pen"></i>
+          <i class="fa-solid fa-file-lines"></i>
           <span class="align-middle">{{ __('Manage Designations') }}</span>
         </a>
       </li>
@@ -59,12 +59,18 @@
       </li>
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('sheet.report') }}">
-          <i class="fa-solid fa-triangle-exclamation"></i>
+          <i class="fa-solid fa-book"></i>
           <span class="align-middle">{{ __('Sheet Report') }}</span>
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('sheet.report') }}">
+        <a class="sidebar-link" href="{{ route('late.time') }}">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="align-middle">{{ __('Late Time') }}</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link" href="{{ route('over.time') }}">
           <i class="fa-solid fa-stopwatch"></i>
           <span class="align-middle">{{ __('Over Time') }}</span>
         </a>
@@ -98,13 +104,14 @@
       </li>
       <li class="sidebar-item">
         <a class="sidebar-link" href="javascript:void(0)">
-          <i class="fa-solid fa-file-export"></i>
+          
+          <i class="fa-solid fa-wallet"></i>
           <span class="align-middle">{{ __('Gross Salary') }}</span>
         </a>
       </li>
       <li class="sidebar-item">
         <a class="sidebar-link" href="javascript:void(0)">
-          <i class="fa-solid fa-file-export"></i>
+          <i class="fa-solid fa-clipboard"></i>
           <span class="align-middle">{{ __('Deductions') }}</span>
         </a>
       </li>

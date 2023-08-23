@@ -16,6 +16,15 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+	<style>
+    /* In order to place the tracking correctly */
+    canvas.drawing,
+    canvas.drawingBuffer {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
   </head>
   <body>
 	<div class="wrapper">
