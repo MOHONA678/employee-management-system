@@ -65,5 +65,13 @@ class Employee extends Model
         return $this->hasMany(Allowance::class);
     }
 
+    public function lateTime(): HasMany {
+        return $this->hasMany(LateTime::class);
+    }
+
+    public function overTime(): HasMany {
+        return $this->hasMany(OverTime::class);
+    }
+
 }
 

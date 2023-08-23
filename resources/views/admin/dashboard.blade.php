@@ -23,7 +23,7 @@
 				</div>
 				<div class="col-auto">
 				  <div class="stat text-primary">
-					<i class="align-middle" data-feather="truck"></i>
+				    <i class="fa-solid fa-clock"></i>
 				  </div>
 				</div>
 			  </div>
@@ -44,7 +44,7 @@
 				</div>
 				<div class="col-auto">
 				  <div class="stat text-primary">
-					<i class="align-middle" data-feather="truck"></i>
+					<i class="fa-solid fa-users-gear"></i>
 				  </div>
 				</div>
 			  </div>
@@ -65,7 +65,7 @@
 				</div>
 				<div class="col-auto">
 				  <div class="stat text-primary">
-					<i class="align-middle" data-feather="truck"></i>
+					<i class="fa-solid fa-users-viewfinder"></i>
 				  </div>
 				</div>
 			  </div>
@@ -86,7 +86,7 @@
 				</div>
 				<div class="col-auto">
 				  <div class="stat text-primary">
-					<i class="align-middle" data-feather="truck"></i>
+					<i class="fas fa-user align-middle"></i>
 				  </div>
 				</div>
 			  </div>

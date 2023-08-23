@@ -7,7 +7,9 @@ use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LateTimeController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\OverTimeController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -52,6 +54,11 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::post('/check',[CheckController::class,'CheckStore'])->name('check.store');
     Route::get('/report',[CheckController::class,'sheetReport'])->name('sheet.report');
     Route::get('/gross-salary', [PayrollController::class, 'grossSalary'])->name('gross.salary');
+    Route::get('/latetime',[LateTimeController::class,'index'])->name('attendance.latetime');
+    Route::post('/latetime',[LateTimeController::class,'lateTime'])->name('late.time');
+    Route::get('/overtime',[OverTimeController::class,'index'])->name('attendance.overtime');
+    Route::post('/overtime',[OverTimeController::class,'overTime'])->name('over.time');
+    Route::get('/barcode', [AttendanceController::class, 'barcode'])->name('attd.barcode');
     // Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
 
 });
