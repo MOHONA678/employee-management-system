@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->tinyInteger('leave_type');
+            $table->text('leave_reason')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

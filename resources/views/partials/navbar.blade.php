@@ -28,7 +28,7 @@
             <i class="fas fa-plus align-middle"></i>
             <span class="text-dark ps-2">{{ __('Attendance') }}</span>
           </a>
-          <a href="{{ route('leave.create') }}" class="list-group-item">
+          <a href="{{ route('leaves.create') }}" class="list-group-item">
             <i class="fas fa-plus align-middle"></i>
             <span class="text-dark ps-2">{{ __('Leave') }}</span>
           </a>

@@ -1,68 +1,66 @@
 @extends('layouts.admin')
 
-@section('title', __('Edit Leave'))
+@section('title')
+  {{ __('Add Leave Records') }}
+@endsection
 
 @section('header')
-    <h1 class="h3 mb-3">{{ __('Update Leave') }}</h1>
+  <h1 class="h3 mb-3">Dashboard</h1>
 @endsection
 
 @section('content')
-    <section class="row">
-        <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="col-6">
-                <form action="{{ route('leave.update', $leave->id) }}" method="post">
-                    @csrf
-                    @method('put')
-                    <div class="card flex-fill">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">{{ __('Update Leave Record') }}</h5>
-                        </div>
-                        <div class="card-body py-0">
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <label for="title" class="form-label">{{ __('Leave Title') }}</label>
-                                    <input type="text" name="title" class="form-control" id="title" value="{{ $leave->title }}" required />
-                                </div>
-                                <div class="col-12">
-                                    <label for="description" class="form-label">{{ __('Leave Description') }}</label>
-                                    <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="{{ __('Type details here ...') }}">{{ $leave->description }}</textarea>
-                                </div>
-                                <div class="col-12">
-                                    <label for="leave_type" class="form-label">{{ __('Leave Type') }}</label>
-                                    <select name="leave_type" id="leave_type" class="form-control" required>
-                                        <option value="1" {{ $leave->leave_type == 1 ? 'selected' : '' }}>Vacation</option>
-                                        <option value="2" {{ $leave->leave_type == 2 ? 'selected' : '' }}>Sick Leave</option>
-                                        <!-- Add other options here -->
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="status" class="form-label">{{ __('Leave Status') }}</label>
-                                    <select name="status" class="form-control" id="status">
-                                        <option value="1" {{ $leave->status == 1 ? 'selected' : '' }}>{{ __('Enable') }}</option>
-                                        <option value="0" {{ $leave->status == 0 ? 'selected' : '' }}>{{ __('Disable') }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-6 d-grid">
-                                    <a href="{{ route('leaves.index') }}" class="btn btn-outline-secondary">
-                                        <i class="align-middle me-1" data-feather="arrow-left"></i>
-                                        <span class="ps-1">{{ __('Discard') }}</span>
-                                    </a>
-                                </div>
-                                <div class="col-6 d-grid">
-                                    <button type="submit" class="btn btn-outline-secondary">
-                                        <i class="align-middle me-1" data-feather="check"></i>
-                                        <span class="ps-1">{{ __('Update') }}</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+  <section class="row">
+    <div class="col-8">
+      <form method="POST" action="{{ route('leaves.store') }}">
+        @csrf
+        <div class="card flex-fill">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Add Leave</h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="employee_id">Employee</label>
+                <select name="employee_id" id="employee_id" class="form-control" required>
+                  @foreach($employees as $employee)
+                    <option value="{{ $employee->id }}">{{ $employee->firstname }} {{ $employee->lastname }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-4">
+                <label for="start_date">Start Date</label>
+                <input type="date" name="start_date" id="start_date" class="form-control" required>
+              </div>
+              <div class="col-4">
+                <label for="end_date">End Date</label>
+                <input type="date" name="end_date" id="end_date" class="form-control" required>
+              </div>
+              <div class="col-4">
+                <label for="leave_type">Leave Type</label>
+                <select name="leave_type" id="leave_type" class="form-control" required>
+                  <option value="1">Vacation</option>
+                  <option value="2">Sick Leave</option>
+                  <option value="3">Emergency Leave</option>
+                  <option value="4">Involuntary Leave</option>
+                  <option value="5">Medical Leave</option>
+                  <option value="6">Casual Leave</option>
+                  <option value="7">Marriage Leave</option>
+                </select>
+              </div>
+              <div>
+                <label for="leave_reason">Leave Reason</label>
+                <textarea name="leave_reason" class="form-control" id=""></textarea>
+              </div>
             </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </div>
         </div>
-    </section>
+      </form>
+    </div>
+  </section>
+@endsection
+
+@section('script')
 @endsection

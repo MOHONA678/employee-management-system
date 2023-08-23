@@ -41,7 +41,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::resource('department', DepartmentController::class);
     Route::resource('designation', DesignationController::class);
     // Route::resource('attendance', AttendanceController::class);
-    Route::resource('leave', LeaveController::class);
+    Route::resource('leaves', LeaveController::class);
     // Route::resource('salary', SalaryController::class);
     Route::resource('allowance',AllowanceController::class);
     Route::resource('payroll',PayrollController::class);

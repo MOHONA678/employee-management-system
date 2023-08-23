@@ -72,13 +72,13 @@
       
       <li class="sidebar-header">{{ __('Leave Management') }}</li>      
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('leave.index') }}">
+        <a class="sidebar-link" href="{{ route('leaves.index') }}">
           <i class="fa-solid fa-person-walking-arrow-right"></i>
           <span class="align-middle">{{ __('Manage Leaves') }}</span>
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('leave.create') }}">
+        <a class="sidebar-link" href="{{ route('leaves.create') }}">
           <i class="fa-solid fa-file-pen"></i>
           <span class="align-middle">{{ __('Registration') }}</span>
         </a>

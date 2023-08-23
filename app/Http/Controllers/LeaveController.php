@@ -56,8 +56,9 @@ class LeaveController extends Controller
     public function edit(Leave $leave)
     {
         //
-        $leaves = Leave::all();
-        return view('admin.leave.edit',compact('leaves'));
+        $employees =Employee::all();
+        $leave = Leave::all();
+        return view('admin.leave.edit', compact('leave'));
     }
 
     /**
@@ -66,7 +67,9 @@ class LeaveController extends Controller
     public function update(UpdateLeaveRequest $request, Leave $leave)
     {
         //
-        return redirect()->route('leave.index')->with('success', 'Leave record updated successfully.');
+        $leave = Leave::all();
+        // return redirect()->route('admin.leave.index')->with('success', 'Leave record updated successfully.');
+        return back()->with('success', 'Leave record updated successfully.');
     }
 
     /**
@@ -74,6 +77,7 @@ class LeaveController extends Controller
      */
     public function destroy(Leave $leave)
     {
-        //
+        $leave->delete();
+        return back()->with('success','Leave deleted successfully');
     }
 }
