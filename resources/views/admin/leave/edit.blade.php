@@ -32,6 +32,7 @@
                                     <select name="leave_type" id="leave_type" class="form-control" required>
                                         <option value="1" {{ $leave->leave_type == 1 ? 'selected' : '' }}>Vacation</option>
                                         <option value="2" {{ $leave->leave_type == 2 ? 'selected' : '' }}>Sick Leave</option>
+                                        <option value="3" {{ $leave->leave_type == 3 ? 'selected' : '' }}>Emergency Leave</option>
                                         <!-- Add other options here -->
                                     </select>
                                 </div>
@@ -47,7 +48,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-6 d-grid">
-                                    <a href="{{ route('leaves.index') }}" class="btn btn-outline-secondary">
+                                    <a href="{{ route('leave.index') }}" class="btn btn-outline-secondary">
                                         <i class="align-middle me-1" data-feather="arrow-left"></i>
                                         <span class="ps-1">{{ __('Discard') }}</span>
                                     </a>

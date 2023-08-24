@@ -36,8 +36,10 @@ Route::get('/', function () {
 // Route::get('/admin', function () {
 //     return view('layouts.admin');
 // });
-Route::middleware('auth')->prefix('admin')->group( function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+// Route::middleware('auth')->prefix('admin')->group( function () {
+Route::middleware('superadmin')->prefix('super')->group( function () {
+
+    Route::get('/', [AdminController::class, 'index'])->name('super.dashboard');
     Route::get('/sample', [AdminController::class, 'sample'])->name('view.sample');
     Route::resource('employee', EmployeeController::class);
     Route::resource('department', DepartmentController::class);
@@ -61,6 +63,21 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::get('/barcode', [AttendanceController::class, 'barcode'])->name('attd.barcode');
     // Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
 
+});
+Route::middleware('admin')->prefix('admin')->group( function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+Route::middleware('moderator')->prefix('moderator')->group( function () {
+    Route::get('/', [AdminController::class, 'index'])->name('moderator.dashboard');
+});
+
+Route::middleware('hr')->prefix('hr-manager')->group( function () {
+    Route::get('/', [AdminController::class, 'index'])->name('hr.dashboard');
+});
+
+Route::middleware('payroll')->prefix('payroll-manager')->group( function () {
+    Route::get('/', [AdminController::class, 'index'])->name('payroll.dashboard');
 });
 
 Route::get('/dashboard', function () {

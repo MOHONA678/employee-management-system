@@ -56,8 +56,8 @@ class LeaveController extends Controller
     public function edit(Leave $leave)
     {
         //
-        $leaves = Leave::all();
-        return view('admin.leave.edit',compact('leaves'));
+        // $leaves = Leave::all();
+        return view('admin.leave.edit',compact('leave'));
     }
 
     /**
