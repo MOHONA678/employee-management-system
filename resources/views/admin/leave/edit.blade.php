@@ -11,14 +11,19 @@
 @section('content')
   <section class="row">
     <div class="col-8">
-      <form method="POST" action="{{ route('leaves.store') }}">
+      <form method="POST" action="{{ route('leaves.update', $leave->id ) }}">
         @csrf
+        @method('put')
         <div class="card flex-fill">
           <div class="card-header">
             <h5 class="card-title mb-0">Add Leave</h5>
           </div>
           <div class="card-body">
             <div class="row g-3">
+              <div class="col-12">
+                <label for="start_date">Leave Title</label>
+                <input type="text" name="title" id="start_date" class="form-control" required>
+              </div>
               <div class="col-12">
                 <label for="employee_id">Employee</label>
                 <select name="employee_id" id="employee_id" class="form-control" required>
@@ -27,15 +32,15 @@
                   @endforeach
                 </select>
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <label for="start_date">Start Date</label>
                 <input type="date" name="start_date" id="start_date" class="form-control" required>
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <label for="end_date">End Date</label>
                 <input type="date" name="end_date" id="end_date" class="form-control" required>
               </div>
-              <div class="col-4">
+              <div class="col-6">
                 <label for="leave_type">Leave Type</label>
                 <select name="leave_type" id="leave_type" class="form-control" required>
                   <option value="1">Vacation</option>
@@ -45,6 +50,13 @@
                   <option value="5">Medical Leave</option>
                   <option value="6">Casual Leave</option>
                   <option value="7">Marriage Leave</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="status">Leave Type</label>
+                <select name="status" id="status" class="form-control" required>
+                  <option value="1">Apprived</option>
+                  <option value="0">Rejected</option>
                 </select>
               </div>
               <div>

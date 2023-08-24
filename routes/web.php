@@ -60,6 +60,7 @@ Route::middleware('auth')->prefix('admin')->group( function () {
     Route::post('/overtime',[OverTimeController::class,'overTime'])->name('over.time');
     Route::get('/barcode', [AttendanceController::class, 'barcode'])->name('attd.barcode');
     // Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
+    Route::resource('/leaves',LeaveController::class);
 
 });
 
