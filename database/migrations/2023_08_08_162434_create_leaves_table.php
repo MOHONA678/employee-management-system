@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->bigInteger("employee_id")->unsigned();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete("cascade");
+            $table->string('title');
             $table->date('start_date');
             $table->date('end_date');
             $table->tinyInteger('leave_type');
-            $table->tinyInteger('status')->default(0);
+            $table->text('leave_reason')->nullable();
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

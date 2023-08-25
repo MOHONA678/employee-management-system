@@ -21,7 +21,7 @@
       <div class="card-header">              
         <h5 class="card-title mb-0">{{ __('Over Time') }}</h5>
       </div>
-        <table class="table table-hover my-0 data-table">
+        <table class="table table-hover my-0">
                   
             <thead>
                 <tr>

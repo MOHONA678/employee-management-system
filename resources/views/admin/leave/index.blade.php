@@ -7,7 +7,7 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-3">Manage Leaves</h1>
-    <a href="{{ route('leave.create') }}" class="btn btn-primary">
+    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('leaves.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.leaves.create') : route('hr.leaves.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add New') }}</span>
     </a>
@@ -67,10 +67,11 @@
                 @endif
               </td>
               <td class="d-flex justify-content-center ">
-                <a href="{{ route('leave.edit', $leave->id) }}" class="btn btn-outline-success btn-sm mx-2">
+                {{-- <a href="{{ route('leaves.edit', $leave->id) }}" class="btn btn-outline-success btn-sm mx-2"> --}}
+                  <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('leaves.edit', $leave->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.leaves.edit', $leave->id) : route('hr.leaves.edit', $leave->id) ) }}" class="btn btn-outline-success btn-sm mx-2">
                   <i class="fas fa-edit"></i>
                 </a>
-                <form action="{{ route('leave.destroy', $leave->id) }}" method="post">
+                <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('leaves.destroy', $leave->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.leaves.destroy', $leave->id) : route('hr.leaves.destroy', $leave->id) ) }}" method="post">
                   @csrf
                   @method('delete')
                   <button type="submit" class="btn btn-outline-danger btn-sm" onclick="del(event, this)">

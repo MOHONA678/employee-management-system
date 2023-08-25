@@ -75,11 +75,11 @@
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/scripts.js')}}"></script>
 	<script src="{{asset('js/salary.js')}}"></script>
-	{{-- <script>
+	<script>
 	  $(document).ready( function () {
     	$('.data-table').DataTable();
 	  } );
-	</script> --}}
+	</script>
 	@yield('script')
   </body>
 </html>
