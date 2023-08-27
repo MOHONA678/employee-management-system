@@ -142,7 +142,7 @@
       
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'payroll-manager')) --}}
         <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('payroll.index') }}">
+        <a class="sidebar-link" href="{{ Auth::user()->role->slug === 'super-admin' ? route('payroll.index') : (Auth::user()->role->slug === 'administrator' ? route('admin.payroll.index') : route('manager.payroll.index') ) }}">
           <i class="fa-solid fa-file"></i>
           <span class="align-middle">{{ __('Manage Payroll') }}</span>
         </a>

@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = '/admin';
     public const MODERATOR = '/moderator';
     public const HR = '/hr-manager';
-    public const PAYROLL = '/payroll-manager';
+    public const PAYROLL = '/manager';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
