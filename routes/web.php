@@ -63,6 +63,9 @@ Route::middleware('superadmin')->prefix('super')->group( function () {
     Route::get('/barcode', [AttendanceController::class, 'barcode'])->name('attd.barcode');
     // Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
     Route::resource('/leaves',LeaveController::class);
+    // Route::post('/check/store', [PayrollController::class, ])->name('check.store');
+    Route::post('/calculate', [PayrollController::class, 'calculatePayroll'])->name('calculate.payroll');
+
 
 });
 Route::middleware('admin')->prefix('admin')->group( function () {

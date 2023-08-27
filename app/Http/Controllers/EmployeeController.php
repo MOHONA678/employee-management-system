@@ -63,7 +63,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         //
-        dd($employee);
+        // dd($employee);
         $departments = Department::all();
         $designations = Designation::all();
         $schedules = Schedule::all();
