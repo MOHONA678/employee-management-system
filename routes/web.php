@@ -16,6 +16,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
+use App\Models\Payroll;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,13 +113,14 @@ Route::middleware('admin')->prefix('admin')->group( function () {
         Route::put('/{id}', [LeaveController::class, 'update'])->name('admin.leaves.update');
         Route::delete('/{id}', [LeaveController::class, 'destroy'])->name('admin.leaves.destroy');
     });
-    Route::prefix('user')->group(function() {
-        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
-        Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
-        Route::post('/', [UserController::class, 'create'])->name('admin.user.store');
-        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
-        Route::put('/{id}', [UserController::class, 'update'])->name('admin.user.update');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+    // Route::resource('users',UserController::class );
+    Route::prefix('users')->group(function() {
+        Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
+        Route::post('/', [UserController::class, 'store'])->name('admin.users.store');
+        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/{id}', [UserController::class, 'update'])->name('admin.users.update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     });
 });
 
@@ -160,6 +162,7 @@ Route::middleware('hr')->prefix('hr-manager')->group( function () {
     Route::prefix('employee')->group(function() {
         Route::get('/', [EmployeeController::class, 'index'])->name('hr.employee.index');
         Route::get('/create', [EmployeeController::class, 'create'])->name('hr.employee.create');
+        Route::get('/{id}/show', [EmployeeController::class, 'show'])->name('hr.employee.show');
         Route::post('/', [EmployeeController::class, 'create'])->name('hr.employee.store');
         Route::get('/{id}/edit', [EmployeeController::class, 'edit'])->name('hr.employee.edit');
         Route::put('/{id}', [EmployeeController::class, 'update'])->name('hr.employee.update');
@@ -175,8 +178,13 @@ Route::middleware('hr')->prefix('hr-manager')->group( function () {
     });
 });
 
-Route::middleware('payroll')->prefix('payroll-manager')->group( function () {
+Route::middleware('payroll')->prefix('manager')->group( function () {
     Route::get('/', [AdminController::class, 'index'])->name('payroll.dashboard');
+    Route::prefix('payroll')->group(function() {
+        Route::get('/', [PayrollController::class, 'index'])->name('manager.payroll.index');
+        Route::get('/create', [PayrollController::class, 'create'])->name('manager.payroll.create');
+        
+    });
 });
 
 Route::get('/dashboard', function () {

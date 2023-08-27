@@ -7,7 +7,7 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-3">Manage Departments</h1>
-    <a href="{{ route('department.create') }}" class="btn btn-primary">
+    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('department.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.department.create') : route('hr.department.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add New') }}</span>
     </a>
@@ -46,10 +46,10 @@
                 {{ $department->created_at->diffforhumans() }}
               </td>
               <td class="d-flex justify-content-center ">
-                <a href="{{ route('department.edit', $department->id) }}" class="btn btn-outline-success btn-sm mx-2">
+                <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('department.edit', $department->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.department.edit', $department->id) : route('hr.department.edit', $department->id) ) }}" class="btn btn-outline-success btn-sm mx-2">
                   <i class="fas fa-edit"></i>
                 </a>
-                <form action="{{ route('department.destroy', $department->id) }}" method="post">
+                <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('department.destroy', $department->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.department.destroy', $department->id) : route('hr.department.destroy', $department->id) ) }}" method="post">
                   @csrf
                   @method('delete')
                   <button type="submit" class="btn btn-outline-danger btn-sm" onclick="del(event, this)">

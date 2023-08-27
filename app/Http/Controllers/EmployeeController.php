@@ -51,19 +51,24 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
         //
-        return view('admin.employee.show',compact('employee'));
+        $employee = Employee::findOrFail($id);
+        $departments = Department::all();
+        $designations = Designation::all();
+        $schedules = Schedule::all();
+        return view('admin.employee.show',compact('employee', 'departments', 'designations', 'schedules'));
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
         //
-        dd($employee);
+        $employee = Employee::findOrFail($id);
         $departments = Department::all();
         $designations = Designation::all();
         $schedules = Schedule::all();

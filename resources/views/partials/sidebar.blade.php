@@ -19,7 +19,7 @@
       {{-- @endif
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator')) --}}
         <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ Auth::user()->role->slug === 'super-admin' ? route('user.index') : route('admin.user.index') }}">
+        <a class="sidebar-link" href="{{ Auth::user()->role->slug === 'super-admin' ? route('user.index') : route('admin.users.index') }}">
           <i class="fas fa-user align-middle"></i>
           <span class="align-middle">{{ __('Manage Users') }}</span>
         </a>

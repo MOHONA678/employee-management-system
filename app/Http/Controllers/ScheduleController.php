@@ -50,9 +50,10 @@ class ScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Schedule $schedule)
+    public function edit($id)
     {
         //
+        $schedule = Schedule::findOrFail($id);
         return view('admin.schedule.edit',compact('schedule'));
     }
 

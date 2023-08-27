@@ -12,7 +12,7 @@
   <section class="row">
     <div class="col-12 d-flex align-items-center justify-content-center">
       <div class="col-6">
-        <form action="{{ route('roles.store') }}" method="post">
+        <form action="{{  Auth::user()->role->slug === 'super-admin' ? route('role.store')  }}" method="post">
           @csrf
           <div class="card flex-fill">
             <div class="card-header">
@@ -41,7 +41,7 @@
             <div class="card-footer">
               <div class="row">
                 <div class="col-6 d-grid">
-                  <a href="{{ route('roles.index') }}" class="btn btn-outline-secondary" >
+                  <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('roles.index', $role->id)  }}" class="btn btn-outline-secondary" >
                     <i class="align-middle me-1" data-feather="arrow-left"></i>
                     <span class="ps-1">{{ __('Discard') }}</span>
                   </a>

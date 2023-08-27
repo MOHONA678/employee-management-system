@@ -7,7 +7,7 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-3">Payroll</h1>
-    <a href="{{ route('payroll.create') }}" class="btn btn-primary">
+    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('payroll.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.payroll.create') : route('hr.payroll.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add New') }}</span>
     </a>
@@ -50,7 +50,7 @@
         <tbody>
   
   
-            <form action="{{route('check.store')}}" method="post">
+            <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('check.store') : (Auth::user()->role->slug === 'administrator' ? route('admin.check.store') : route('payroll.check.store') ) }}" method="post">
                
                 <button type="submit" class="btn btn-success" style="display: flex; margin:10px">submit</button>
                 @csrf

@@ -7,10 +7,10 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3">{{ __('Daily attendance') }}</h1>
-    <a href="{{route('attendance.create')}}" class="btn btn-primary">
+    {{-- <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('attendance.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.attendance.create') : route('moderator.attendance.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add new') }}</span>
-    </a>
+    </a> --}}
   </div>
 @endsection
 
@@ -56,7 +56,7 @@
         <tbody>
   
   
-            <form action="{{route('check.store')}}" method="post">
+            <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('check.store') : (Auth::user()->role->slug === 'administrator' ? route('admin.check.store') : route('moderator.check.store') ) }}" method="post">
                
                 <button type="submit" class="btn btn-success" style="display: flex; margin:10px">submit</button>
                 @csrf

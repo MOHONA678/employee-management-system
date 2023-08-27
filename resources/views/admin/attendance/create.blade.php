@@ -12,7 +12,7 @@
   <section class="row">
     <div class="col-12 d-flex align-items-center justify-content-center">
       <div class="col-6">
-        <form action="{{ route('attendance.store') }}" method="post">
+        <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('attendance.store') : (Auth::user()->role->slug === 'administrator' ? route('admin.attendance.store') : route('moderator.attendance.store') ) }}" method="post">
           @csrf
           <div class="card flex-fill">
             <div class="card-header">
@@ -50,7 +50,7 @@
             <div class="card-footer">
               <div class="row">
                 <div class="col-6 d-grid">
-                  <a href="{{ route('attendance.index') }}" class="btn btn-outline-secondary" >
+                  <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('attendance.index', $attendance->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.attendance.index', $attendance->id) : route('moderator.attendance.index', $attendance->id) ) }}" class="btn btn-outline-secondary" >
                     <i class="align-middle me-1" data-feather="arrow-left"></i>
                     <span class="ps-1">{{ __('Discard') }}</span>
                   </a>

@@ -11,7 +11,7 @@
 @section('content')
   <section class="row">
     <div class="col-12">
-      <form method="POST" action="{{ route('employee.store') }}">
+      <form method="POST" action="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.store') : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.store') : route('hr.employee.store') ) }}">
         @csrf
         <div class="row g-3">
           <div class="col-6">
@@ -80,7 +80,7 @@
               <div class="card-footer">
                 <div class="row">
                   <div class="col-6 d-grid">
-                    <a href="{{ route('employee.index') }}" class="btn btn-outline-secondary" >
+                    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.index', $employee->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.index', $employee->id) : route('hr.employee.index', $employee->id) ) }}" class="btn btn-outline-secondary" >
                       <i class="align-middle me-1" data-feather="arrow-left"></i>
                       <span class="ps-1">{{ __('Discard') }}</span>
                     </a>

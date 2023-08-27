@@ -23,7 +23,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('salaries.create') }}" class="btn btn-primary">Add New Salary</a>
+                    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('salary.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.salary.create') : route('payroll.salary.create') ) }}" class="btn btn-primary">Add New Salary</a>
                     <table class="table data-table">
                         <thead>
                             <tr>
@@ -46,7 +46,7 @@
                                     <td>{{ $salary->medical }}</td>
                                     <!-- Add other columns as needed -->
                                     <td>
-                                        <a href="{{ route('salaries.edit', $salary->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('salary.edit', $salary->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.salary.edit', $salary->id) : route('payroll.salary.edit', $salary->id) ) }}" class="btn btn-info">Edit</a>
                                         <!-- Add other action buttons as needed -->
                                     </td>
                                 </tr>

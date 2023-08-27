@@ -7,7 +7,7 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3">{{ __('Manage user') }}</h1>
-    <a href="{{route('user.create')}}" class="btn btn-primary">
+    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('user.create') : route('admin.users.create')  }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add new') }}</span>
     </a>
@@ -57,13 +57,13 @@
                   @endif
                 </td>
                 {{-- <td class="d-none d-md-table-cell">{{ $user->action }}</td> --}}
-                <td width="90px">
-                  <form action="{{ route("user.destroy", $user->id) }}" method="post">
+                <td width="90px" class="d-flex">
+                  <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('user.edit', $user->id) : route('admin.users.edit', $user->id) }}" class="btn btn-outline-primary btn-sm me-1">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('user.destroy', $user->id) : route('admin.users.destroy', $user->id)}}" method="post">
                     @csrf
                     @method("delete")
-                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-primary btn-sm">
-                      <i class="fas fa-edit"></i>
-                    </a>
                     <button type="button" class="btn btn-outline-danger btn-sm" onclick="del(event, this)">
                       <i class="fas fa-trash-alt"></i>
                     </button>

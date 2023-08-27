@@ -34,11 +34,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-       $employee= User::create($request->all());
-         if($employee){
-            $salary = new Salary($request->all());
-            $employee->salary()->save($salary);
-         }
+    //    $employee= User::create($request->all());
+    //      if($employee){
+    //         $salary = new Salary($request->all());
+    //         $employee->salary()->save($salary);
+    //      }
+        User::create($request->all());
         return back()->with('success', 'user crated successfully');
     }
 
@@ -53,11 +54,14 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    // public function edit(User $user)
+    public function edit($id)
     {
         //
+        // dd($user);
+        $user = User::findOrFail($id);
         $roles = Role::all();
-        return view('admin.user.edit', compact(['roles', 'user']));
+        return view('admin.user.edit', compact('roles', 'user'));
     }
 
     /**
@@ -66,12 +70,14 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $employee = User::findorFail($id);
-        $employee->update($request->all());
-        $salary = $employee->salary?: new Salary();
-        $salary->fill($request->all());
-        $employee->salary()->save($salary);
-        return back()->with('success', 'user updated successfully');
+        // $employee = User::findorFail($id);
+        // $employee->update($request->all());
+        // $salary = $employee->salary?: new Salary();
+        // $salary->fill($request->all());
+        // $employee->salary()->save($salary);
+        // return back()->with('success', 'user updated successfully');
+        $user->update($request->all());
+        return back()->with('success', 'User updated successfully');
     }
 
     /**

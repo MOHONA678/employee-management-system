@@ -8,7 +8,7 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-3">Manage Employee</h1>
-    <a href="{{ route('employee.create') }}" class="btn btn-primary">
+    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.create') : route('hr.employee.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add New') }}</span>
     </a>
@@ -44,13 +44,13 @@
                 <td>{{ $employee->schedule->title  }}</td>
                 <td>{{ $employee->created_at->diffforhumans() }}</td>
                 <td class="d-flex align-items-center">
-                  <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-info btn-sm">
+                  <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.edit', $employee->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.edit', $employee->id) : route('hr.employee.edit', $employee->id) ) }}" class="btn btn-info btn-sm">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="{{ route('employee.show', $employee->id) }}" class="btn btn-success btn-sm ms-1 me-1">
+                  <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.show', $employee->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.show', $employee->id) : route('hr.employee.show', $employee->id) ) }}" class="btn btn-success btn-sm ms-1 me-1">
                     <i class="fas fa-eye"></i>
                   </a>
-                  <form action="{{ route('employee.destroy', $employee->id) }}" method="post">
+                  <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.destroy', $employee->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.destroy', $employee->id) : route('hr.employee.destroy', $employee->id) ) }}" method="post">
                     <a href="#" class="btn btn-danger btn-sm" onclick="del(event, this)">
                       <i class="fas fa-trash-alt"></i>
                     </a>

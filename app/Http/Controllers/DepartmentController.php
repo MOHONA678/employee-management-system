@@ -47,8 +47,9 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
+        $department = Department::findOrFail($id);
         return view('admin.department.edit',compact('department'));
     }
 

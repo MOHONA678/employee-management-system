@@ -48,9 +48,11 @@ class DesignationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Designation $designation)
+    public function edit($id)
     {
         //
+        $designation = Designation::findOrFail($id);
+
         return view('admin.designation.edit', compact('designation'));
     }
 

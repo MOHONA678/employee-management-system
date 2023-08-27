@@ -6,11 +6,11 @@
 
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-3">Payroll</h1>
-    <a href="{{ route('payroll.create') }}" class="btn btn-primary">
+    <h1 class="h3 mb-3">Show Employee Card</h1>
+    {{-- <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.create') : route('hr.employee.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add New') }}</span>
-    </a>
+    </a> --}}
   </div>
 @endsection
 
@@ -30,7 +30,7 @@
           <p class="card-text"><strong>Gender:</strong> {{ $employee->gender === 0 ? 'Male' : 'Female' }}</p>
         </div>
         <div class="card-footer">
-          <a href="{{ route('employee.index') }}" class="btn btn-primary">Back to List</a>
+          <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.index') : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.index') : route('hr.employee.index') ) }}" class="btn btn-primary">Back to List</a>
         </div>
       </div>
     </div>

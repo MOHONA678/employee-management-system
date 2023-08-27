@@ -7,7 +7,7 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3">{{ __('Manage Schedule') }}</h1>
-    <a href="{{route('schedule.create')}}" class="btn btn-primary">
+    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('schedule.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.schedule.create') : route('moderator.schedule.create') ) }}" class="btn btn-primary">
       <i class="fas fa-plus"></i>
       <span class="ps-1">{{ __('Add new') }}</span>
     </a>
@@ -42,10 +42,10 @@
                   
 
                   <td class="d-flex justify-contetn-start">
-                    <a href="{{ route('schedule.edit', $schedule->id) }}" class="btn btn-outline-success btn-sm mx-2">
+                    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('schedule.edit', $schedule->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.schedule.edit', $schedule->id) : route('moderator.schedule.edit', $schedule->id) ) }}" class="btn btn-outline-success btn-sm mx-2">
                       <i class="fas fa-edit"></i>
                     </a>
-                    <form action="{{ route('schedule.destroy', $schedule->id) }}" method="post">
+                    <form action="{{ Auth::user()->role->slug === 'super-admin' ? route('schedule.destroy', $schedule->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.schedule.destroy', $schedule->id) : route('moderator.schedule.destroy', $schedule->id) ) }}" method="post">
                       @csrf
                       @method('delete')
                       <button type="submit" class="btn btn-outline-danger btn-sm" onclick="del(event, this)">

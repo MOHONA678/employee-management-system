@@ -51,9 +51,10 @@ class AttendanceController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Attendance $attendance)
+    public function edit($id)
     {
         //
+        $attendance = Attendance::findOrFail($id);
         $employees = Employee::all();
         return view('admin.attendance.edit', compact(['employees', 'attendance']));
     }
