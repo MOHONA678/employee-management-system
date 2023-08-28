@@ -97,21 +97,21 @@
       {{-- @endif
 
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'moderator')) --}}
-        <li class="sidebar-item">
+        {{-- <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('late.time') }}">
           <i class="fa-solid fa-triangle-exclamation"></i>
           <span class="align-middle">{{ __('Late Time') }}</span>
         </a>
-        </li>
+        </li> --}}
       {{-- @endif
       
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'moderator')) --}}
-        <li class="sidebar-item">
+        {{-- <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('over.time') }}">
           <i class="fa-solid fa-stopwatch"></i>
           <span class="align-middle">{{ __('Over Time') }}</span>
         </a>
-        </li>
+        </li> --}}
       @endif
       
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'hr-manager'))
@@ -157,24 +157,33 @@
         </a>
         </li>
       {{-- @endif
-      
+
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'payroll-manager')) --}}
         <li class="sidebar-item">
+        <a class="sidebar-link" href="{{ route('payroll.report') }}">
+          <i class="fa-solid fa-file-export"></i>
+          <span class="align-middle">{{ __('Payroll Sheet') }}</span>
+        </a>
+        </li>
+      {{-- @endif
+      
+      @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'payroll-manager')) --}}
+        {{-- <li class="sidebar-item">
         <a class="sidebar-link" href="javascript:void(0)">
           
           <i class="fa-solid fa-wallet"></i>
           <span class="align-middle">{{ __('Gross Salary') }}</span>
         </a>
-        </li>
+        </li> --}}
       {{-- @endif
 
       @if (Auth::check() && (Auth::user()->role->slug === 'super-admin' || Auth::user()->role->slug === 'administrator' || Auth::user()->role->slug === 'payroll-manager')) --}}
-        <li class="sidebar-item">
+        {{-- <li class="sidebar-item">
         <a class="sidebar-link" href="javascript:void(0)">
           <i class="fa-solid fa-clipboard"></i>
           <span class="align-middle">{{ __('Deductions') }}</span>
         </a>
-        </li>
+        </li> --}}
       @endif
       
       

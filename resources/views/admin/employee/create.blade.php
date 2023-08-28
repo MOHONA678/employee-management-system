@@ -80,7 +80,7 @@
               <div class="card-footer">
                 <div class="row">
                   <div class="col-6 d-grid">
-                    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.index', $employee->id) : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.index', $employee->id) : route('hr.employee.index', $employee->id) ) }}" class="btn btn-outline-secondary" >
+                    <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('employee.index') : (Auth::user()->role->slug === 'administrator' ? route('admin.employee.index') : route('hr.employee.index') ) }}" class="btn btn-outline-secondary" >
                       <i class="align-middle me-1" data-feather="arrow-left"></i>
                       <span class="ps-1">{{ __('Discard') }}</span>
                     </a>
@@ -227,6 +227,32 @@
                 </div>
               </div>
             </div>
+            <div class="card flex-fill">
+              <div class="card-header">
+                <h5 class="card-title mb-0">{{ __('Employee Photo') }}</h5>
+              </div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-6">    
+                    <label for="imageInput" class="d-flex flex-column align-items-center justify-content-center bg-light h-100" style="border: 3px solid lightgray; border-style: dashed;">
+                      <div class="d-flex flex-column align-items-center justify-content-center py-1">
+                        <h1 class="h1 mb-0"><i class="align-middle" data-feather="upload-cloud"></i></h1>
+                        <h6 class="my-1 text-dark text-center"><strong>{{ __('Click to upload') }}</strong></h6>
+                        <p class="mb-2 text-dark text-center" style="font-size: 0.75rem;">
+                          <span>{{ __('PNG, JPG or JPEG') }}</span><br />
+                          <span>{{ __('(MAX. UPLOAD 2MB)') }}</span><br/>
+                          <span>{{ __('(MIN. RES. 300X300)') }}</span>
+                        </p>
+                      </div>
+                      <input type="file" name="avatar" class="d-none" id="imageInput" accept="image/*;capture=camera" />
+                    </label>
+                  </div>
+                  <div class="col-6">
+                    <img id="dummy" src="https://via.placeholder.com/300x300" class="w-100" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
         </div>
@@ -236,4 +262,14 @@
 @endsection
 
 @section('script')
+  <script>
+    var imgInp = document.getElementById("imageInput");
+    var dummy = document.getElementById("dummy");
+    imgInp.onchange = evt => {
+      const [file] = imgInp.files
+      if (file) {
+        dummy.src = URL.createObjectURL(file)
+      }
+    }
+  </script>
 @endsection

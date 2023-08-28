@@ -66,6 +66,8 @@ Route::middleware('superadmin')->prefix('super')->group( function () {
     Route::resource('/leaves',LeaveController::class);
     // Route::post('/check/store', [PayrollController::class, ])->name('check.store');
     Route::post('/calculate', [PayrollController::class, 'calculatePayroll'])->name('calculate.payroll');
+    Route::get('/sheet-report', [PayrollController::class, 'sheetReport'])->name('payroll.report');
+    Route::post('/generate', [PayrollController::class, 'generateReport'])->name('generate.payroll');
 
 
 });

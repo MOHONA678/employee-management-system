@@ -5,12 +5,12 @@
 @endsection
 
 @section('header')
-<div class="text-center mt-4">
-    <h1 class="h2">Welcome back, Charles</h1>
+  <div class="text-center mt-4">
+    <h1 class="h2">{{ __('Welcome back') }}</h1>
     <p class="lead">
-        Sign in to your account to continue
+      {{ __('Sign in to your account to continue') }}
     </p>
-</div>
+  </div>
 @endsection
 
 @section('content')
@@ -24,11 +24,11 @@
         <form method="POST" action="{{ route('login') }}">
           @csrf
           <div class="mb-3">
-            <label class="form-label">Email</label>
+            <label class="form-label">{{ __('Email') }}</label>
             <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
           </div>
           <div class="mb-3">
-            <label class="form-label">Password</label>
+            <label class="form-label">{{ __('Password') }}</label>
             <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
           </div>
           <div class="row g-3">

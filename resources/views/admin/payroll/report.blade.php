@@ -7,10 +7,10 @@
 @section('header')
   <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-3">Payroll</h1>
-    {{-- <a href="{{ Auth::user()->role->slug === 'super-admin' ? route('payroll.create') : (Auth::user()->role->slug === 'administrator' ? route('admin.payroll.create') : route('hr.payroll.create') ) }}" class="btn btn-primary">
-      <i class="fas fa-plus"></i>
-      <span class="ps-1">{{ __('Add New') }}</span>
-    </a> --}}
+    <a href="{{ route('payroll.report') }}" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i>
+      <span class="ps-1">{{ __('Back') }}</span>
+    </a>
   </div>
 @endsection
 
@@ -21,14 +21,49 @@
       <div class="card-header">              
         <h5 class="card-title mb-0">{{ __('Employees Daily Attendance') }}</h5>
       </div>
+      <div class="card-body">
+        <form action="{{ route('generate.payroll') }}" method="POST">
+          @csrf
+          <div class="row g-3">
+            <div class="col-3">
+              {{-- <label for="year">Select Year:</label> --}}
+              <select name="year" class="form-select" id="year">
+                <option value="">{{ __('Choose Year') }}</option>
+                <option value="2023">{{ __('2023') }}</option>
+              </select>
+            </div>
+            <div class="col-3">
+              {{-- <label for="month">Select Month:</label> --}}
+              <select name="month" class="form-select" id="month">
+                <option value="">{{ __('Choose Month') }}</option>
+                <option value="1">{{ __('January') }}</option>
+                <option value="2">{{ __('February') }}</option>
+                <option value="3">{{ __('March') }}</option>
+                <option value="4">{{ __('April') }}</option>
+                <option value="5">{{ __('May') }}</option>
+                <option value="6">{{ __('June') }}</option>
+                <option value="7">{{ __('July') }}</option>
+                <option value="8">{{ __('August') }}</option>
+                <option value="9">{{ __('September') }}</option>
+                <option value="10">{{ __('October') }}</option>
+                <option value="11">{{ __('November') }}</option>
+                <option value="12">{{ __('December') }}</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary">{{ __('Generate') }}</button>
+            </div>
+          </div>
+      </form>
+      </div>
       <div class="table-responsive">
-        <table class="table table-hover my-0 table-bordered">
-          <thead>
-            <tr>
-  
-                <th scope="col" width="200px">Employee Name</th>
-                
-                <th scope="col">Employee Position</th>
+        @isset($selectedYear, $selectedMonth)
+          <h2>Salary Sheet for {{ $selectedMonth }}/{{ $selectedYear }}</h2>
+          <table class="table table-hover my-0 table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" width="200px">{{ __('Employee Name') }}</th>
+                <th scope="col">{{ __('Employee Position') }}</th>
                 <th scope="col">Basic Salary</th>
                 <th scope="col">House rent</th>
                 <th scope="col">Medical Allowance</th>
@@ -46,90 +81,24 @@
                 <th scope="col">Health insurance</th>
                 <th scope="col">Deduction</th>
                 <th scope="col">Net Salary</th>
-            
-            </tr>
-        </thead>
-  
-        <tbody>    
-            @foreach ($employees as $employee)
-
-              @php
-                $year = date('Y');
-                $month = date('m');
-
-              @endphp
-
-                <tr class="employee">
-                  <td width="200px" class="py-0">{{ $employee->firstname }} {{ $employee->lastname }}</td>
-                  <td>{{ $employee->designation->title }}</td>
-                  
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                   
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                   
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  
-                  {{-- <td width="">
-                    <input type="number" name="payroll[{{ $employee->id }}][{{ $year }}][{{ $month }}][overtime_pay]" class="form-control" id="" value="{{ $employee->salary->overtime_pay }}" readonly>
-                  </td> --}}
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                    
-                  </td>
-                  <td width="">
-                    
-
-                  </td> 
-                  <td width="">
-                    
-                  </td> 
-                  <td width="">
-                    
-                  </td>
-                  <td width="200px">
-                    
-                  </td>
               </tr>
-                    
-                {{-- @endforeach
-                  
-              @endforeach --}}
-
-            @endforeach
-  
-  
-  
-        </tbody>
-  
-        </table>
+            </thead>
+                <tbody>
+                    @foreach ($employees as $employee)
+                      <tr>
+                        <td>{{ $employee->firstname . ' ' . $employee->lastname }}</td>
+                        @php
+                          $employeeSalary = $salaryData->where('employee_id', $employee->id)->first();
+                        @endphp
+                        <td>{{ $employeeSalary ? $employeeSalary->basic : 'N/A' }}</td>
+                        <td>{{ $employeeSalary ? $employeeSalary->house_rent : 'N/A' }}</td>
+                        <td>{{ $employeeSalary ? $employeeSalary->medical : 'N/A' }}</td>
+                            <!-- Add more fields as needed -->
+                      </tr>
+                    @endforeach
+                </tbody>
+          </table>
+        @endisset
       </div>
       
     </div>

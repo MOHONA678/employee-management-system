@@ -135,6 +135,8 @@ class PayrollController extends Controller
                             $data->house_rent = $payrollData['house_rent'];
                             $data->medical = $payrollData['medical'];
                             $data->transport = $payrollData['transport'];
+                            $data->phone_bill = $payrollData['phone_bill'];
+                            $data->internet_bill = $payrollData['internet_bill'];
                             $data->special = $payrollData['special'];
                             // $data->bonus = $payrollData['bonus'];
                             $data->days_present = $payrollData['days_present'];
@@ -158,5 +160,34 @@ class PayrollController extends Controller
             }
         }
         return back();
+    }
+
+    public function sheetReport()
+    {
+        $employees = Employee::all();
+        $months = [
+            1 => 'January',
+            2 => 'February',
+            // ... Define months for all 12 months
+        ];
+
+        return view('admin.payroll.report', compact('employees', 'months'));
+    }
+
+    public function generateReport(Request $request)
+    {
+        $selectedYear = $request->input('year');
+        $selectedMonth = $request->input('month');
+        $employees = Employee::all();
+        $salaryData = [];
+
+        if ($selectedYear && $selectedMonth) {
+            $salaryData = Payroll::whereIn('employee_id', $employees->pluck('id'))
+                ->whereYear('year', $selectedYear)
+                ->whereMonth('month', $selectedMonth)
+                ->get();
+        }
+
+        return view('admin.payroll.report', compact('employees', 'selectedYear', 'selectedMonth', 'salaryData'));
     }
 }
