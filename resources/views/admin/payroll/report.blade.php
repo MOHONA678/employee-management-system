@@ -84,18 +84,15 @@
               </tr>
             </thead>
                 <tbody>
-                    @foreach ($employees as $employee)
-                      <tr>
-                        <td>{{ $employee->firstname . ' ' . $employee->lastname }}</td>
-                        @php
-                          $employeeSalary = $salaryData->where('employee_id', $employee->id)->first();
-                        @endphp
-                        <td>{{ $employeeSalary ? $employeeSalary->basic : 'N/A' }}</td>
-                        <td>{{ $employeeSalary ? $employeeSalary->house_rent : 'N/A' }}</td>
-                        <td>{{ $employeeSalary ? $employeeSalary->medical : 'N/A' }}</td>
-                            <!-- Add more fields as needed -->
-                      </tr>
-                    @endforeach
+                  @foreach ($salaryData as $data)
+                  <tr>
+                      <td>{{ $data->employee->firstname }}</td>
+                      <td>{{ $data->basic }}</td>
+                      <td>{{ $data->house_rent }}</td>
+                      <td>{{ $data->medical }}</td>
+                      <!-- Add more fields as needed -->
+                  </tr>
+              @endforeach
                 </tbody>
           </table>
         @endisset

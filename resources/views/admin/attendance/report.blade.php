@@ -13,7 +13,7 @@
     <div class="col-12">
       <div class="card flex-fill">
         <div class="card-header">
-          <h5 class="card-title mb-0">{{ __('Monthly Attendance Report') }}</h5>
+          <h5 class="card-title mb-0">{{ __('Monthly Attendance Report of August') }}</h5>
         </div>
         <div class="card-body">
           <div class="mb-4">

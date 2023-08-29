@@ -19,10 +19,10 @@
     <div class="col-12">
       <div class="card flex-fill">
         <div class="card-header">              
-          <h5 class="card-title mb-0">{{ __('Employees Daily Attendance') }}</h5>
+          <h5 class="card-title mb-0">{{ __('Payroll of the month August') }}</h5>
         </div>
         <div class="table-responsive">
-          <table class="table table-hover my-0 table-bordered">
+          <table class="table table-hover my-0 table-bordered table-sm">
             <thead>
               <tr>
                 <th scope="col" width="200px">{{ __('Employee Name') }}</th>
@@ -60,7 +60,9 @@
                     $month = date('m');
                   @endphp
                   <tr class="employee">
-                    <td width="200px" class="py-0">{{ $employee->firstname }} {{ $employee->lastname }}</td>
+                    <td width="200px" class="py-0" >
+                      <span style="width: 200px;">{{ $employee->firstname }} {{ $employee->lastname }}</span>
+                    </td>
                     <td>{{ $employee->designation->title }}</td>  
                     <td width="">
                       <input type="number" name="payroll[{{ $employee->id }}][basic]" class="form-control basic" id="" value="{{ isset($employee->salary->basic) ? $employee->salary->basic : 0 }}" style="width: 100px" >

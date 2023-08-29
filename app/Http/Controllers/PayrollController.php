@@ -188,6 +188,17 @@ class PayrollController extends Controller
                 ->get();
         }
 
+        // if ($selectedYear && $selectedMonth) {
+        //     $salaryData = Payroll::whereYear('year', $selectedYear)
+        //         ->whereMonth('month', $selectedMonth)
+        //         ->with('employee') // Load the employee relationship
+        //         ->get();
+    
+        //     return view('admin.payroll.report', compact('salaryData', 'selectedYear', 'selectedMonth'));
+        // }
+    
+        // return view('admin.payroll.report');
+
         return view('admin.payroll.report', compact('employees', 'selectedYear', 'selectedMonth', 'salaryData'));
     }
 }

@@ -1,9 +1,13 @@
 # Employee Management System
 
+The Employee Management System is a comprehensive solution designed to streamline and enhance human resource operations within organizations. This system offers a user-friendly interface that facilitates efficient management of employee profiles, tracking of leave and attendance, task assignment, and performance evaluations. By centralizing these essential HR functions, the system empowers administrators to optimize workforce management, boost productivity, and ensure accurate data-driven decision-making.
+
 
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Live Preview](#live-preview)
+- [User Interface](#user-interface)
 - [Technologies Used](#technologies-used)
 - [Usage](#usage)
 - [Features](#features)
@@ -18,6 +22,8 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [AdminKit Admin Panel](#adminkit-admin-panel)
+- [Contributors](#contributors)
+- [Want to Contribute](#want-to-contribute)
 - [License](#license)
 
 
@@ -26,13 +32,44 @@
 The Employee Management System is a comprehensive and user-friendly application designed to streamline and simplify the process of managing employees within an organization. This system provides an efficient and organized way to handle various employee-related tasks, from onboarding and attendance tracking to performance evaluation and payroll management.
 
 
+## Live Preview
+
+To preview this project please visit https://hrms.shawon-khan.com/
+
+
+## User Interface
+
+![Welcome](public/img/screenshots/Welcome.jpeg "Welcome Page")
+
+![Login](public/img/screenshots/Login.jpeg "Login Page")
+
+![Dashboard](public/img/screenshots/Dashboard.jpeg "Dashboard Page")
+
+![Users](public/img/screenshots/Users.jpeg "Manage Users Page")
+
+![New User](public/img/screenshots/New_User.jpeg "Add New User Page")
+
+![Employees](public/img/screenshots/Employees.jpeg "Manage Employees Page")
+
+![New Employee](public/img/screenshots/New_Employee.jpeg "Add New Employee Page")
+
+![Schedule](public/img/screenshots/Schedule.jpeg "Working Schedule Page")
+
+![Daily Attendance](public/img/screenshots/Daily_Attendance.jpeg "Daily Attendance Page")
+
+![AttendanceReport](public/img/screenshots/Attendance_Report.jpeg "Attendance Report Page")
+
+![Payroll](public/img/screenshots/Payroll.jpeg "Monthly Payroll Page")
+
+
+
 ## Technologies Used
 
-The following technologies have been used in the development of Learnopia:
+The following technologies have been used in the development of Employee Management System (HRMS):
 
 - **[Laravel](https://laravel.com/)** : A popular PHP web application framework known for its elegant syntax and feature-rich ecosystem.
 - **[Laravel Blade](https://laravel.com/)** : The templating engine provided by Laravel for designing and rendering views.
-- **[MySQL]** : The database management system used to store application data.
+- **MySQL** : The database management system used to store application data.
 - **[Bootstrap](https://getbootstrap.com/)** : A CSS framework for creating responsive and attractive UI components.
 - **[FontAwesome](https://fontawesome.com/)**: A popular icon library that provides a wide range of icons for web projects.
 
@@ -88,22 +125,22 @@ Before you proceed, ensure you have the following software installed:
 
 #### Installation
 
-1. Clone the **Employee Management System** repository to your local machine using the following command:
+01. Clone the **Employee Management System** repository to your local machine using the following command:
 ```bash
 git clone https://github.com/MOHONA678/employee-management-system.git
 ```
 
-2. Navigate to the project directory:
+02. Navigate to the project directory:
 ```bash
 cd employee-management-system
 ```
 
-3. Install the required `PHP` dependencies using Composer:
+03. Install the required `PHP` dependencies using Composer:
 ```bash
 composer install
 ```
 
-4. Install `Node.js` dependencies
+04. Install `Node.js` dependencies
 ###### Using npm:
 ```bash
 npm install
@@ -114,7 +151,7 @@ or,
 yarn
 ```
 
-5. Generate `Vite` serve manifest:
+05. Generate `Vite` serve manifest:
 ###### Using npm:
 ```bash
 npm run build
@@ -125,22 +162,22 @@ or,
 yarn build
 ```
 
-6. Create a new MySQL database for Learnopia and update the `.env` file with your database credentials:
+06. Create a new MySQL database for Employee Management System and update the `.env` file with your database credentials:
 ```bash
 cp .env.example .env
 ```
 
-7. Generate a unique application key:
+07. Generate a unique application key:
 ```bash
 php artisan key:generate
 ```
 
-8. Run the database migrations and seed the database with initial data:
+08. Run the database migrations and seed the database with initial data:
 ```bash
 php artisan migrate --seed
 ```
 
-9. Start the development server:
+09. Start the development server:
 ```bash
 php artisan serve
 ```
@@ -152,6 +189,30 @@ Congratulations! Employee Management System should now be up and running at `htt
 Our Employee Management System incorporates the AdminKit Admin Panel to streamline administrative tasks. AdminKit is a flexible and modern admin dashboard template built with Bootstrap and other front-end technologies. Its customizable components and UI elements enable efficient management of various HRMS functionalities.
 
 Get it from here: **[AdminKit](https://adminkit.io/)**
+
+
+## Contributors
+
+##### Mohona Akter
+- GitHub: [MOHONA678](https://github.com/MOHONA678/)
+- Contributions: Multirole Authentication with Persmission, User Management, Attendance System.
+
+##### Mst.Shorifa Akter
+- GitHub: [Shorifa1234](https://github.com/Shorifa1234)
+- Contributions: Staff Management, Leave Management, Payroll system.
+
+##### Muhammad Nasir Uddin Khan Shawon
+- GitHub: [shawonk007](https://github.com/shawonk007)
+- Contributions: Database Design & Management.
+
+
+## Want to Contribute?
+We welcome contributions from the community! If you'd like to contribute to the Employee Management System project, please follow these steps:
+
+01. Fork the repository.
+02. Create a new branch for your feature/bug fix.
+03. Make your changes and test thoroughly.
+04. Submit a pull request explaining your changes and the problem they solve.
 
 
 ## License

@@ -19,7 +19,7 @@
   <div class="col-12">
     <div class="card flex-fill">
       <div class="card-header">              
-        <h5 class="card-title mb-0">{{ __('Employees Daily Attendance') }}</h5>
+        <h5 class="card-title mb-0">{{ __('Attendace of the Month August') }}</h5>
       </div>
       <div class="table-responsive">
         <table class="table table-hover my-0 table-bordered">
